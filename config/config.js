@@ -8,7 +8,7 @@ var config = {
     app: {
       name: 'insw'
     },
-    port: 3000,
+    port: process.env.PORT || 3000,
     db: 'mongodb://meteor:insw2016@ds013260.mlab.com:13260/heroku_rr98k0lg'
   },
 
@@ -17,7 +17,7 @@ var config = {
     app: {
       name: 'insw'
     },
-    port: 3000,
+    port: process.env.PORT || 3000,
     db: 'mongodb://meteor:insw2016@ds013260.mlab.com:13260/heroku_rr98k0lg'
   },
 
@@ -26,7 +26,7 @@ var config = {
     app: {
       name: 'insw'
     },
-    port: 3000,
+    port: process.env.PORT || 3000,
     db: 'mongodb://meteor:insw2016@ds013260.mlab.com:13260/heroku_rr98k0lg'
   }
 };
