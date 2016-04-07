@@ -1,7 +1,7 @@
 var path = require('path'),
     rootPath = path.normalize(__dirname + '/..'),
     env = process.env.NODE_ENV || 'development';
-var db = require('/locals');
+var db = require('./locals');
 
 var config = {
   development: {
