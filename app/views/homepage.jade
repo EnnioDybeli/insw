@@ -1,0 +1,25 @@
+extends layout
+block content
+  
+    .index
+      header
+        .logo
+          img(src="img/logo.png")
+        .form
+          form
+            input( type='text' name='email' placeholder='Email ose Nr telefoni' id='email')
+            input( type='password' name='password' placeholder='Password' id='password')
+            input(type='submit' action="/user/login" method="get" name='kycu' value='Kycu' id='kycu')
+            span ose
+          a(href='/register/student' id='regjistrohu') Rregjistrohu
+      .hero
+          .hero-image
+          .text
+            h2 Edukimi pertej auditorit
+            p Qendro i lidhur dhe i informuar ne cdo moment
+            p ne lidhje me aktivitetin mesimor
+          .buttona
+            a(href='register/student' id='student') Per Studentet
+            a(href='/register/profesor' id='fakulteti') Per Fakultetin
+      footer
+    script(src='scripts/main.js')

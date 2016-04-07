@@ -1,18 +1,39 @@
 var express = require('express'),
   router = express.Router(),
   mongoose = require('mongoose'),
-  Article = mongoose.model('Article');
+  // User = mongoose.model('User');
 
 module.exports = function (app) {
   app.use('/', router);
 };
 
 router.get('/', function (req, res, next) {
-  Article.find(function (err, articles) {
-    if (err) return next(err);
-    res.render('index', {
-      title: 'This shit works',
-      articles: articles
-    });
+
+      res.render('homepage');
+
+});
+
+router.get('/register/:usertype', function(req,res){
+
+  var userType = req.params.usertype;
+
+  if( userType == 'student'){ 
+
+  res.render('register',{
+    showtype:'student'
   });
+
+  }
+
+  else if( userType == 'profesor'){ 
+
+  res.render('register',{
+    showtype:'profesor'
+  });
+
+  }
+
+  else{
+  res.render('error');
+  }
 });
