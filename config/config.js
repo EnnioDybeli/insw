@@ -1,6 +1,7 @@
 var path = require('path'),
     rootPath = path.normalize(__dirname + '/..'),
     env = process.env.NODE_ENV || 'development';
+var db = require('/locals');
 
 var config = {
   development: {
@@ -9,7 +10,7 @@ var config = {
       name: 'insw'
     },
     port: process.env.PORT || 3000,
-    db: 'mongodb://meteor:insw2016@ds013260.mlab.com:13260/heroku_rr98k0lg'
+    db: db.connectionString
   },
 
   test: {
@@ -18,7 +19,7 @@ var config = {
       name: 'insw'
     },
     port: process.env.PORT || 3000,
-    db: 'mongodb://meteor:insw2016@ds013260.mlab.com:13260/heroku_rr98k0lg'
+    db: db.connectionString
   },
 
   production: {
@@ -27,7 +28,7 @@ var config = {
       name: 'insw'
     },
     port: process.env.PORT || 3000,
-    db: 'mongodb://meteor:insw2016@ds013260.mlab.com:13260/heroku_rr98k0lg'
+    db: db.connectionString
   }
 };
 
