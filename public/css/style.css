@@ -1,7 +1,523 @@
-body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  padding: 50px;
+html {
+  height: 100%;
+  width: 100%;
 }
-a {
-  color: #00b7ff;
+body {
+  font-family: 'Roboto', sans-serif;
+  width: 100%;
+  height: 100%;
+  color: color;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+body a {
+  text-decoration: none;
+}
+header {
+  width: 100%;
+  padding: 20px 0;
+  position: relative;
+  height: 40px;
+}
+header .logo {
+  position: absolute;
+  height: auto;
+  left: 40px;
+}
+header .form {
+  position: absolute;
+  height: auto;
+  right: 40px;
+}
+header .form input {
+  outline: none;
+}
+header .form #email {
+  font-size: 15px;
+  height: 30px;
+  width: auto;
+  border: 1px solid #bdbdbd;
+  border-radius: 3px;
+}
+header .form #password {
+  font-size: 15px;
+  height: 30px;
+  width: auto;
+  border: 1px solid #bdbdbd;
+  border-radius: 3px;
+}
+header .form #kycu {
+  background: #09c98c;
+  height: 35px;
+  width: 95px;
+  color: #fff;
+  border: 0;
+  border-radius: 3px;
+  font-size: 17px;
+  cursor: pointer;
+}
+header .form #kycu:hover {
+  background: #00b578;
+  transition: 0.5s;
+}
+header .form span {
+  font-size: 15px;
+  padding: 0 10px 0 10px;
+}
+header .form #regjistrohu {
+  padding: 8px 35px 9px 35px;
+  background: #535dce;
+  color: #fff;
+  border-radius: 3px;
+  cursor: pointer;
+}
+header .form #regjistrohu:hover {
+  background: #3f49ba;
+  transition: 0.5s;
+}
+header .form ::-webkit-input-placeholder {
+  padding-left: 10px;
+}
+.hero {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background-image: url("../img/image.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 1;
+}
+.hero .hero-image {
+  position: absolute;
+  background: -webkit-linear-gradient(45deg, #fff, #535dce, #535dce);
+  width: 100%;
+  height: 100%;
+  opacity: 0.9;
+}
+.hero .text {
+  position: relative;
+  text-align: center;
+  top: 25%;
+  color: #fff;
+  z-index: 999;
+  height: 300px;
+}
+.hero .text h2 {
+  font-size: 55px;
+}
+.hero .buttona {
+  position: relative;
+  text-align: center;
+  top: 30%;
+  z-index: 999;
+}
+.hero .buttona #student {
+  padding: 14px 35px;
+  background: #09c98c;
+  color: #fff;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-right: 20px;
+}
+.hero .buttona #student:hover {
+  background: #00b578;
+  color: #fff;
+  transition: 0.5s;
+}
+.hero .buttona #fakulteti {
+  padding: 14px 35px;
+  background: #fff;
+  color: #535dce;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.hero .buttona #fakulteti:hover {
+  background: #ebebeb;
+  color: #535dce;
+  transition: 0.5s;
+}
+footer {
+  height: 80px;
+  width: 100%;
+  bottom: 0;
+  background: #fff;
+}
+.signup {
+  font-family: helvetica, arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: -webkit-linear-gradient(#4f56c0 0%, #5790ce 100%);
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+header .register {
+  position: absolute;
+  height: auto;
+  right: 40px;
+  top: 30px;
+  color: #fff;
+}
+header .register span {
+  color: #fff;
+  padding-right: 15px;
+}
+header .register a {
+  text-decoration: none;
+  color: #fff;
+  padding: 10px 15px;
+  border: 1px solid #fff;
+  border-radius: 3px;
+  cursor: pointer;
+}
+header .register a:hover {
+  background: #437cba;
+}
+.main {
+  width: 445px;
+  height: 570px;
+  background: #fff;
+  margin: 0 auto;
+  position: relative;
+}
+.main .content-header {
+  height: 65px;
+  text-align: center;
+  border-bottom: 1px solid #bdbdbd;
+  font-size: 20px;
+  color: #8f909d;
+}
+.main .content-header i {
+  padding-top: 25px;
+  padding-right: 30px;
+}
+.main .content {
+  margin-top: 45px;
+  text-align: center;
+}
+.main .content #emri {
+  width: 145px;
+  height: 35px;
+  margin-right: 15px;
+  margin-bottom: 30px;
+  border: 1px solid #bdbdbd;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.main .content #mbiemri {
+  width: 145px;
+  height: 35px;
+  margin-bottom: 30px;
+  border: 1px solid #bdbdbd;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.main .content #email {
+  width: 314px;
+  height: 35px;
+  margin-bottom: 30px;
+  border: 1px solid #bdbdbd;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.main .content #password {
+  width: 314px;
+  height: 35px;
+  margin-bottom: 30px;
+  border: 1px solid #bdbdbd;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.main .content #confirm_password {
+  width: 314px;
+  height: 35px;
+  margin-bottom: 30px;
+  border: 1px solid #bdbdbd;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.main .content #nr {
+  width: 314px;
+  height: 35px;
+  margin-bottom: 30px;
+  border: 1px solid #bdbdbd;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.main .content ::-webkit-input-placeholder {
+  padding-left: 15px;
+}
+.main .content #viti {
+  width: 145px;
+  height: 35px;
+  margin-right: 15px;
+  margin-bottom: 30px;
+  border: 1px solid #bdbdbd;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.main .content #grupi_shkollor {
+  width: 150px;
+  height: 35px;
+  margin-bottom: 30px;
+  border: 1px solid #bdbdbd;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.main .submit #regjistrohu {
+  width: 150px;
+  height: 35px;
+  background: #23c88d;
+  color: #fff;
+  border: 0;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.main .submit #regjistrohu:hover {
+  background: #0fb479;
+}
+.post {
+  background-color: #f1f1f7;
+  height: auto;
+  width: 100%;
+  overflow: auto;
+}
+.post header {
+  background-color: #26262a;
+}
+.post header .avatar {
+  position: absolute;
+  height: 40px;
+  right: 40px;
+  color: #fff;
+}
+.post header .avatar span {
+  color: #fff;
+  padding-right: 15px;
+}
+.post .blog {
+  background-color: #fff;
+  margin: 40px auto;
+  width: 970px;
+  height: 100%;
+  position: relative;
+  border-radius: 3px;
+}
+.post .blog .menu {
+  border-bottom: 1px solid #ebebf4;
+  height: 65px;
+}
+.post .blog .menu ul {
+  list-style-type: none;
+  float: left;
+}
+.post .blog .menu ul li {
+  display: inline;
+  padding: 0 15px 25px 15px;
+  font-size: 18px;
+  cursor: pointer;
+}
+.post .blog .menu ul li.active {
+  border-bottom: 2px solid #6b71fe;
+  color: #6b71fe;
+}
+.post .blog .menu ul li:hover {
+  border-bottom: 2px solid #6b71fe;
+}
+.post .blog .menu a {
+  float: right;
+  padding: 12px 18px;
+  background: #23c88d;
+  color: #fff;
+  margin: 10px 10px 0 0;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.post .blog .menu a:hover {
+  background: #0fb479;
+  transition: 0.5s;
+}
+.post .blog .blog-post {
+  height: 225px;
+  margin-top: 30px;
+}
+.post .blog .blog-post .left-blog-post {
+  float: left;
+  width: 20%;
+  margin: 30px 0 0 30px;
+  line-height: 30px;
+}
+.post .blog .blog-post .left-blog-post a {
+  font-size: 18px;
+  font-weight: 600;
+  color: #6b71fe;
+}
+.post .blog .blog-post .left-blog-post span {
+  color: #bdbdbd;
+  font-size: 15px;
+}
+.post .blog .blog-post .right-blog-post {
+  float: right;
+  width: 70%;
+  line-height: 20px;
+}
+.post .blog .blog-post .right-blog-post p {
+  width: 80%;
+  color: #bdbdbd;
+}
+.post .blog .more-post {
+  height: 40px;
+  background: #fcfcfd;
+  position: relative;
+}
+.post .blog .more-post a {
+  font-size: 18px;
+  position: absolute;
+  text-transform: uppercase;
+  color: #bdbdbd;
+  padding: 10px 0 0 30%;
+}
+.post .blog .blog-post1 {
+  height: 225px;
+  margin-top: 30px;
+}
+.post .blog .blog-post1 .left-blog-post {
+  float: left;
+  width: 20%;
+  margin: 30px 0 0 30px;
+  line-height: 30px;
+}
+.post .blog .blog-post1 .left-blog-post a {
+  font-size: 18px;
+  font-weight: 600;
+  color: #6b71fe;
+}
+.post .blog .blog-post1 .left-blog-post span {
+  color: #bdbdbd;
+  font-size: 15px;
+}
+.post .blog .blog-post1 .right-blog-post {
+  float: right;
+  width: 70%;
+  line-height: 20px;
+}
+.post .blog .blog-post1 .right-blog-post p {
+  width: 80%;
+  color: #bdbdbd;
+}
+.post .blog .more-post {
+  height: 40px;
+  background: #fcfcfd;
+  position: relative;
+}
+.post .blog .more-post a {
+  font-size: 18px;
+  position: absolute;
+  text-transform: uppercase;
+  color: #bdbdbd;
+  padding: 10px 0 0 30%;
+}
+.blog .blog-header {
+  border-bottom: 1px solid #ebebf4;
+  height: 65px;
+}
+.blog .blog-header span {
+  float: left;
+  font-size: 20px;
+  color: #bdbdbd;
+  margin: 20px 0 0 40px;
+}
+.blog .blog-header a {
+  float: right;
+  padding: 25px 40px 0 0;
+  font-size: 15px;
+  color: #6b71fe;
+}
+.blog .blog-form {
+  height: 350px;
+  margin-top: 30px;
+  border-bottom: 1px solid #ebebf4;
+}
+.blog .blog-form .blog-form-left {
+  float: left;
+  width: 50%;
+}
+.blog .blog-form .blog-form-left #njoftim {
+  margin: 30px 0 0 30px;
+  border-radius: 5px;
+  border: 1px solid #bdbdbd;
+}
+.blog .blog-form .blog-form-left ::-webkit-input-placeholder {
+  padding-left: 15px;
+  padding-top: 15px;
+}
+.blog .blog-form .blog-form-right {
+  float: right;
+  width: 50%;
+}
+.blog .blog-form .blog-form-right ::-webkit-input-placeholder {
+  padding-left: 15px;
+}
+.blog .blog-form .blog-form-right span {
+  color: #bdbdbd;
+  padding-right: 30px;
+}
+.blog .blog-form .blog-form-right input {
+  margin: 30px 30px 10px 0;
+}
+.blog .blog-form .blog-form-right #viti {
+  width: 150px;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid #bdbdbd;
+  cursor: pointer;
+}
+.blog .blog-form .blog-form-right #grupi_shkollor {
+  width: 150px;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid #bdbdbd;
+  cursor: pointer;
+}
+.blog .blog-form .blog-form-right #njofto {
+  width: 150px;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid #bdbdbd;
+  cursor: pointer;
+}
+.blog .blog-footer {
+  height: 100px;
+  text-align: center;
+}
+.blog .blog-footer input {
+  margin-top: 3%;
+  width: 150px;
+  height: 40px;
+}
+.blog .blog-footer #posto {
+  margin-right: 15px;
+  background-color: #23c88d;
+  color: #fff;
+  border: 1px solid #23c88d;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.blog .blog-footer #posto:hover {
+  background-color: #0fb479;
+}
+.blog .blog-footer #anullo {
+  background: #bdbdbd;
+  color: #fff;
+  border: 1px solid #bdbdbd;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.blog .blog-footer #anullo:hover {
+  background-color: #a9a9a9;
 }
