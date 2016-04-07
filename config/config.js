@@ -9,7 +9,7 @@ var config = {
       name: 'insw'
     },
     port: 3000,
-    db: 'mongodb://localhost/insw-development'
+    db: 'mongodb://meteor:insw2016@ds013260.mlab.com:13260/heroku_rr98k0lg'
   },
 
   test: {
@@ -18,7 +18,7 @@ var config = {
       name: 'insw'
     },
     port: 3000,
-    db: 'mongodb://localhost/insw-test'
+    db: 'mongodb://meteor:insw2016@ds013260.mlab.com:13260/heroku_rr98k0lg'
   },
 
   production: {
@@ -27,7 +27,7 @@ var config = {
       name: 'insw'
     },
     port: 3000,
-    db: 'mongodb://localhost/insw-production'
+    db: 'mongodb://meteor:insw2016@ds013260.mlab.com:13260/heroku_rr98k0lg'
   }
 };
 
