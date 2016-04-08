@@ -8,32 +8,33 @@ Schema = mongoose.Schema;
 var UserSchema = new Schema({
 
 	name:{
-		type:'String',
-		required: true
+		type:'String'
 	},
 
 	surname:{
-		type:'String',
-		required: true
+		type:'String'
 	},
 
 	email:{
 		type:'String',
-		required: true,
+		required: true
+	},
+
+	password:{
+		type:'String',
+		required: true
 	},
 
 	number:{
-		type:'String',
+		type:'String'
 	},
 
 	year:{
-		type:'Number',
-		required: true,
+		type:'String'
 	},
 
 	group:{
-		type:'Number',
-		required: true
+		type:'String'
 	},
 
 	admin:{
