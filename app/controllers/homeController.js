@@ -1,7 +1,10 @@
 var express = require('express'),
     router = express.Router(),
     mongoose = require('mongoose'),
-    User = mongoose.model('User');
+    User = mongoose.model('User'),
+    LocalStrategy = require('passport-local').Strategy,
+    flash = require('express-flash'),
+    passport = require('passport');
 
 module.exports = function (app) {
   app.use('/', router);

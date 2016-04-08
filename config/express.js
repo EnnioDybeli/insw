@@ -9,7 +9,7 @@ var compress = require('compression');
 var methodOverride = require('method-override');
 var passport = require('passport');
 var expressSession = require('express-session');
-
+var flash = require('express-flash');
 
 
 
@@ -28,7 +28,7 @@ module.exports = function(app, config) {
   app.use(expressSession({secret: 'mySecretKey'}));
   app.use(passport.initialize());
   app.use(passport.session());
-
+  app.use(flash());
 
   // app.use(favicon(config.root + '/public/img/favicon.ico'));
   app.use(logger('dev'));
