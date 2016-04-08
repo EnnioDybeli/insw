@@ -32,7 +32,7 @@ router.post('/student/create',function(req,res){
 
     });
 
-});
+  });
 
 
  router.post('/student/create', passport.authenticate('register', {

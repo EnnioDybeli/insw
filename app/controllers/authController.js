@@ -1,7 +1,9 @@
 var express = require('express'),
     router = express.Router(),
     mongoose = require('mongoose'),
-    User = mongoose.model('User');
+    User = mongoose.model('User'),
+    passportlocal = require('passport-local'),
+    passport = require('passport');
 
 module.exports = function (app) {
   app.use('/', router);
@@ -12,6 +14,7 @@ passport.use('register', new LocalStrategy({
   },
 
   function(req, email, password, done) {
+
     findOrCreateUser = function(){
 
       // find a user in Mongo with provided username
@@ -27,13 +30,11 @@ passport.use('register', new LocalStrategy({
         if (user) {
           res.send('User already exists');
           console.log('User already exists');
-          return done(null, false, 
-             // req.flash('message','User Already Exists'));
+          return done(null, false,req.flash('message','User Already Exists'));
         } 
 
 
         else {
-
           // if there is no user with that email
           // create the user
           var student = new User();
@@ -48,21 +49,26 @@ passport.use('register', new LocalStrategy({
 
 
           student.save(function(err) {
-
             if (err)
               res.send(err);
-
             res.redirect('/list');
-
           });
-
         }
 
       });
+
+
     };
      
     // Delay the execution of findOrCreateUser and execute 
     // the method in the next tick of the event loop
     process.nextTick(findOrCreateUser);
-  });
-);
+
+
+  }
+
+  )
+
+  );
+
+
