@@ -35,6 +35,12 @@ router.post('/student/create',function(req,res){
 });
 
 
+ router.post('/student/create', passport.authenticate('register', {
+    successRedirect: '/list',
+    failureRedirect: '/',
+    failureFlash : true 
+  }));
+
 
 router.get('/list', function(req, res){
 

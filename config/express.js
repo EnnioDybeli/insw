@@ -7,14 +7,28 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var compress = require('compression');
 var methodOverride = require('method-override');
+var passport = require('passport');
+var expressSession = require('express-session');
+
+
+
+
 
 module.exports = function(app, config) {
+
   var env = process.env.NODE_ENV || 'development';
   app.locals.ENV = env;
   app.locals.ENV_DEVELOPMENT = env == 'development';
   
   app.set('views', config.root + '/app/views');
   app.set('view engine', 'jade');
+
+
+  //passport stuff 
+  app.use(expressSession({secret: 'mySecretKey'}));
+  app.use(passport.initialize());
+  app.use(passport.session());
+
 
   // app.use(favicon(config.root + '/public/img/favicon.ico'));
   app.use(logger('dev'));
