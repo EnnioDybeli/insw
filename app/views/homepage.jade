@@ -6,10 +6,11 @@ block content
         .logo
           img(src="img/logo.png")
         .form
-          form
+          form(action="post" action="/login")
+
             input( type='text' name='email' placeholder='Email ose Nr telefoni' id='email')
             input( type='password' name='password' placeholder='Password' id='password')
-            input(type='submit' action="/user/login" method="get" name='kycu' value='Kycu' id='kycu')
+            input(type='submit' id='kycu')
             span ose
           a(href='/register/student' id='regjistrohu') Rregjistrohu
       .hero
