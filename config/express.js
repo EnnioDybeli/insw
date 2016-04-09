@@ -8,8 +8,11 @@ var bodyParser = require('body-parser');
 var compress = require('compression');
 var methodOverride = require('method-override');
 var passport = require('passport');
-var flash = require('connect-flash');
-var session = require('express-session')
+var expressSession = require('express-session');
+var flash = require('express-flash');
+
+
+
 
 module.exports = function(app, config) {
 
@@ -19,6 +22,18 @@ module.exports = function(app, config) {
   
   app.set('views', config.root + '/app/views');
   app.set('view engine', 'jade');
+
+
+  //passport stuff 
+  app.use(expressSession({
+    secret: 'noizystresibabastars',
+    resave:true,
+    saveUninitialized: true
+  }));
+  
+  app.use(passport.initialize());
+  app.use(passport.session());
+  app.use(flash());
 
   // app.use(favicon(config.root + '/public/img/favicon.ico'));
   app.use(logger('dev'));
@@ -30,13 +45,6 @@ module.exports = function(app, config) {
   app.use(compress());
   app.use(express.static(config.root + '/public'));
   app.use(methodOverride());
-
-  app.use(express.session({ secret: 'nojzistresibabastars' })); // session secret
-  app.use(passport.initialize());
-  app.use(passport.session()); 
-  app.use(flash()); 
-
-
 
   var controllers = glob.sync(config.root + '/app/controllers/*.js');
   controllers.forEach(function (controller) {

@@ -3,7 +3,7 @@ var express = require('express'),
     mongoose = require('mongoose'),
     User = mongoose.model('User'),
     LocalStrategy = require('passport-local').Strategy,
-    flash = require('connect-flash'),
+    flash = require('express-flash'),
     passport = require('passport');
 
 module.exports = function (app) {
@@ -42,8 +42,3 @@ router.get('/register/:usertype', function(req,res){
   }
 
 });
-
-
-
-
-

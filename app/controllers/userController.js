@@ -13,8 +13,8 @@ module.exports = function (app) {
 
 
  router.post('/student/create', passport.authenticate('register', {
-    successRedirect: '/list',
-    failureRedirect: '/',
+    successRedirect: '/home',
+    failureRedirect: '/list',
     failureFlash : true 
   }));
 

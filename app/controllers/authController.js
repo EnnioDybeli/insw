@@ -3,7 +3,7 @@ var express = require('express'),
     mongoose = require('mongoose'),
     User = mongoose.model('User'),
     LocalStrategy = require('passport-local').Strategy,
-    flash = require('connect-flash'),
+    flash = require('express-flash'),
     passport = require('passport');
 
 module.exports = function (app) {
@@ -34,6 +34,7 @@ passport.use('login', new LocalStrategy({
 
     User.findOne({ 'email' :  email }, 
 
+
       function(err, user) {
 
         if (err)
@@ -41,12 +42,12 @@ passport.use('login', new LocalStrategy({
 
 
         if (!user){
-          console.log('User Not Found with username '+username);
+          console.log('User Not Found with username '+ email);
           return done(null, false, 
                 req.flash('message', 'User Not found.'));                 
         }
 
-        if (!user.validPassword(password)){
+        if ( user.password != req.body.password ){
 
           console.log('Invalid Password');
           return done(null, false, 
@@ -55,11 +56,11 @@ passport.use('login', new LocalStrategy({
 
         return done(null, user);
     }
+
+
   );
 
 }));
-
-
 
 
 passport.use('register', new LocalStrategy({
@@ -82,12 +83,11 @@ passport.use('register', new LocalStrategy({
         if (user) {
           // res.send('User already exists');
           console.log('User already exists');
-          return done(null, false,
-            console.log('User Already Exists'));
+          return done(null, false, console.log('User Already Exists'));
         } 
 
 
-        if( req.body.repassword == req.body.password) {
+        if( req.body.password == req.body.repassword ){
 
           var student = new User();
 
@@ -102,18 +102,23 @@ passport.use('register', new LocalStrategy({
           console.log(student.name)
 
           student.save(function(err) {
+
             if (err)
               res.send(err);
-            console.log('User Registration succesful');    
-            return done(null, user);
+
+            console.log('User Registration succesful'); 
+
+            return done(null, student);
+
           });
         }
 
 
         else{
-          return done(null, false,
-            console.log('pass not matching'));
+          return done(null,false,
+            console.log("passwords dont match"));
         }
+
 
 
       });
@@ -130,4 +135,3 @@ passport.use('register', new LocalStrategy({
   )
 
   );
-
