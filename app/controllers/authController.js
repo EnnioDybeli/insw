@@ -6,6 +6,28 @@ var express = require('express'),
     flash = require('express-flash'),
     passport = require('passport');
 
+
+var fshnEmail = function(email){
+
+  var studentRe = /\w+\.\w+@fshnstudent\.info/; 
+  var profesorRe = /\w+\.\w+@fshn\.edu\.al/;
+
+  if( studentRe.exec(email) || profesorRe.exec(email) ){
+
+    return true;
+
+  }
+
+  else{ 
+
+    return false 
+    
+  }
+
+};
+
+
+
 module.exports = function (app) {
   app.use('/', router);
 };
@@ -87,7 +109,7 @@ passport.use('register', new LocalStrategy({
         } 
 
 
-        if( req.body.password == req.body.repassword ){
+        if( req.body.password == req.body.repassword  && fshnEmail(email) ){
 
           var student = new User();
 
