@@ -3,8 +3,8 @@ var express = require('express'),
     mongoose = require('mongoose'),
     User = mongoose.model('User'),
     LocalStrategy = require('passport-local').Strategy,
-    flash = require('express-flash'),
-    passport = require('passport');
+    passport = require('passport'),
+    flash = require('connect-flash');
 
 module.exports = function (app) {
   app.use('/', router);
@@ -29,12 +29,9 @@ module.exports = function (app) {
 
 router.get('/list', function(req, res){
 
-
   User.find(function(err,users){
-
     if(err)
       res.send(err);
-
     res.send(users);
  });
 

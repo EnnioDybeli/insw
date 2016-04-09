@@ -25,10 +25,6 @@ module.exports = function (app) {
 
 
 
-
-
-
-
 passport.use('login', new LocalStrategy({
     passReqToCallback : true,
     usernameField: 'email',
@@ -63,6 +59,7 @@ passport.use('login', new LocalStrategy({
 
 
   );
+
 }));
 
 
@@ -73,13 +70,15 @@ passport.use('login', new LocalStrategy({
 
 passport.use('register', new LocalStrategy({
     passReqToCallback : true,
-  },
+    usernameField: 'email',
+    passwordField: 'password'
+    },
 
-  function(req, username, password, done) {
+  function(req, email, password, done) {
 
     findOrCreateUser = function(){
 
-      User.findOne({'email':username},function(err, user) {
+      User.findOne({'email':email},function(err, user) {
 
         if (err){
           console.log(err);
@@ -87,7 +86,7 @@ passport.use('register', new LocalStrategy({
         }
 
         if (user) {
-          res.send('User already exists');
+          // res.send('User already exists');
           console.log('User already exists');
           return done(null, false, console.log('User Already Exists'));
         } 
@@ -111,7 +110,7 @@ passport.use('register', new LocalStrategy({
             if (err)
               res.send(err);
             console.log('User Registration succesful');    
-            return done(null, newUser);
+            return done(null, user);
           });
         }
 
