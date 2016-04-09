@@ -14,7 +14,7 @@ module.exports = function (app) {
 
  router.post('/student/create', passport.authenticate('register', {
     successRedirect: '/home',
-    failureRedirect: '/list',
+    failureRedirect: '/',
     failureFlash : true 
   }));
 
@@ -40,6 +40,17 @@ router.get('/list', function(req, res){
 
 router.get('/home', function(req, res){
 
-  res.render('post');
+  if(req.user){ 
+
+  res.render('post',{User:req.user});
+
+  }
+
+  else{
+
+    res.send('not authh');
+
+  }
+  
 
  });

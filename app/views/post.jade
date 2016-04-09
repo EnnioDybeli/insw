@@ -7,16 +7,20 @@ block content
         .logo
           img(src="img/logo2.png")
         .avatar
-          span Egli Lilo
+          span=User.name + " " + User.surname
           img(src='img/avatar.png')
       .blog
         .menu
           ul
+
             li.active Kryesore
             li TIK i pergjithshem
-            li Paraleli A
-            li Grupi A2
-          a(href='#') + Posto nje njoftim
+            li Grupi #{User.group}
+            li Viti #{User.year}
+          a(href='/post') + Posto nje njoftim
+
+
+
         .blog-post
           .left-blog-post
             img(src="img/rectangle.png")
@@ -34,20 +38,23 @@ block content
             p semper eget et felis. Vestibulum purus massa,
         .more-post
           a(href='#') Lexo me shume
-        .blog-post1
-          .left-blog-post
-            img(src="img/rectangle.png")
-            br
-            a(href='#') Sekretaria FSHN
-            br
-            span 12:30 AM
-            br
-            span 31 March, 2016 
-          .right-blog-post
-            h3 Lorem ipsum dolor sit amet, 
 
-            p consectetur adipiscing elit. Ut vitae est nunc. Aenean finibus, ante placerat cursus fermentum, nulla erat ultrices quam, ut sollicitudin ipsum massa ultrices nibh. Integer vel ligula fermentum, sodales risus ac, feugiat magna. 
 
-            p semper eget et felis. Vestibulum purus massa,
-        .more-post
-          a(href='#') Lexo me shume
+
+        //- .blog-post1
+        //-   .left-blog-post
+        //-     img(src="img/rectangle.png")
+        //-     br
+        //-     a(href='#') Sekretaria FSHN
+        //-     br
+        //-     span 12:30 AM
+        //-     br
+        //-     span 31 March, 2016 
+        //-   .right-blog-post
+        //-     h3 Lorem ipsum dolor sit amet, 
+
+        //-     p consectetur adipiscing elit. Ut vitae est nunc. Aenean finibus, ante placerat cursus fermentum, nulla erat ultrices quam, ut sollicitudin ipsum massa ultrices nibh. Integer vel ligula fermentum, sodales risus ac, feugiat magna. 
+
+        //-     p semper eget et felis. Vestibulum purus massa,
+        //- .more-post
+        //-   a(href='#') Lexo me shume
