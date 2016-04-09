@@ -3,7 +3,7 @@ var express = require('express'),
     mongoose = require('mongoose'),
     User = mongoose.model('User'),
     LocalStrategy = require('passport-local').Strategy,
-    flash = require('express-flash'),
+    flash = require('connect-flash'),
     passport = require('passport');
 
 module.exports = function (app) {
@@ -34,7 +34,6 @@ passport.use('login', new LocalStrategy({
 
     User.findOne({ 'email' :  email }, 
 
-
       function(err, user) {
 
         if (err)
@@ -56,14 +55,9 @@ passport.use('login', new LocalStrategy({
 
         return done(null, user);
     }
-
-
   );
 
 }));
-
-
-
 
 
 
@@ -88,11 +82,12 @@ passport.use('register', new LocalStrategy({
         if (user) {
           // res.send('User already exists');
           console.log('User already exists');
-          return done(null, false, console.log('User Already Exists'));
+          return done(null, false,
+            console.log('User Already Exists'));
         } 
 
 
-        else {
+        if( req.body.repassword == req.body.password) {
 
           var student = new User();
 
@@ -113,6 +108,13 @@ passport.use('register', new LocalStrategy({
             return done(null, user);
           });
         }
+
+
+        else{
+          return done(null, false,
+            console.log('pass not matching'));
+        }
+
 
       });
 
