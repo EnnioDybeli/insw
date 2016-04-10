@@ -12,3 +12,27 @@ module.exports = function (app) {
 };
 
 
+router.get('/home', function(req, res){
+
+  if(req.user){ 
+  res.render('post',{User:req.user});
+  }
+
+  else{
+    res.send('not authh');
+  }
+
+ });
+
+
+router.get('/post', function(req, res){
+
+  if(req.user){ 
+  res.render('postonjoftim');
+  }
+
+  else{
+    res.send('not authh');
+  }
+
+ });

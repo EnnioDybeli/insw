@@ -65,14 +65,14 @@ passport.use('login', new LocalStrategy({
         if (!user){
           console.log('User Not Found with username '+ email);
           return done(null, false, 
-                req.flash('message', 'User Not found.'));                 
+                { message: 'Invalid email'});                 
         }
 
         if ( !user.validPassword(password) ){
 
           console.log('Invalid Password');
           return done(null, false, 
-              req.flash('message', 'Invalid Password'));
+              { message: 'Invalid Password'});
         }
 
         return done(null, user);
@@ -104,7 +104,7 @@ passport.use('register', new LocalStrategy({
         if (user) {
           // res.send('User already exists');
           console.log('User already exists');
-          return done(null, false, console.log('User Already Exists'));
+          return done(null, false, {message:"This user already exists"});
         } 
 
 
@@ -137,7 +137,7 @@ passport.use('register', new LocalStrategy({
 
         else{
           return done(null,false,
-            console.log("passwords dont match"));
+            {message:'Passwords dont match'});
         }
 
 

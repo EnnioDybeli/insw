@@ -12,7 +12,9 @@ module.exports = function (app) {
 
 router.get('/', function (req, res, next) {
 
-      res.render('homepage');
+      res.render('homepage',{
+        message: req.flash('error')
+      });
 
 });
 
@@ -24,7 +26,8 @@ router.get('/register/:usertype', function(req,res){
   if( userType == 'student'){ 
 
   res.render('register',{
-    showtype:'student'
+    showtype:'student',
+    message: req.flash('error')
   });
 
   }

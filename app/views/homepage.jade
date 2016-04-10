@@ -6,6 +6,7 @@ block content
         .logo
           img(src="img/logo.png")
         .form
+          p #{message}
           form(method="post" action="/login")
             input( type='text' name='email' placeholder='Email ose Nr telefoni' id='email')
             input( type='password' name='password' placeholder='Password' id='password')
