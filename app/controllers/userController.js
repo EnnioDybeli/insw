@@ -38,13 +38,14 @@ router.get('/list', function(req, res){
 });
 
 
+
 router.get('/email-verification/:token', function(req, res){
 
   User.findOne({'verificationToken':req.params.token},function(err,user){
     if(err)
       res.send(err);
 
-    if (user.authenticated){
+    user.authenticated = true;
 
     user.save(function(err){
       if(err)
@@ -52,11 +53,6 @@ router.get('/email-verification/:token', function(req, res){
 
       res.redirect('/');
     });
-    } else {
-
-      res.send('link is too old');
-
-    }
 
  });
 
