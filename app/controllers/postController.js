@@ -14,7 +14,7 @@ module.exports = function (app) {
 
 router.get('/home', function(req, res){
 
-  if(req.user.authenticated === true){ 
+  if(req.user){ 
   res.render('post',{User:req.user});
   }
 
