@@ -95,7 +95,7 @@ passport.use('register', new LocalStrategy({
 
     findOrCreateUser = function(){
 
-      User.findOne({'email':email},function(err, user) {g
+      User.findOne({'email':email},function(err, user) {
 
         if (err){
           console.log(err);
