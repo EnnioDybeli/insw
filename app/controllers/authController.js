@@ -4,7 +4,8 @@ var express = require('express'),
     User = mongoose.model('User'),
     LocalStrategy = require('passport-local').Strategy,
     flash = require('express-flash'),
-    passport = require('passport');
+    passport = require('passport'),
+    bcrypt = require('bcrypt-nodejs');
 
 
 var fshnEmail = function(email){
@@ -31,8 +32,6 @@ var fshnEmail = function(email){
 module.exports = function (app) {
   app.use('/', router);
 };
-
-
 
 
     passport.serializeUser(function(user, done) {
@@ -69,7 +68,7 @@ passport.use('login', new LocalStrategy({
                 req.flash('message', 'User Not found.'));                 
         }
 
-        if ( user.password != req.body.password ){
+        if ( !user.validPassword(password) ){
 
           console.log('Invalid Password');
           return done(null, false, 
@@ -116,7 +115,7 @@ passport.use('register', new LocalStrategy({
           student.name = req.body.name;
           student.surname = req.body.surname;
           student.email = req.body.email;
-          student.password = req.body.password;
+          student.password = student.generateHash(req.body.password);
           student.number = req.body.number;
           student.year = req.body.year;
           student.group = req.body.group;
