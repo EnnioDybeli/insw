@@ -12,3 +12,39 @@ module.exports = function (app) {
 };
 
 
+
+router.get('/home', function(req, res){
+
+  if(req.user){ 
+
+  res.render('post',{User:req.user});
+
+  }
+
+  else{
+
+    res.send('Session Expired');
+
+  }
+  
+
+ });
+
+
+
+router.get('/post', function(req, res){
+
+  if(req.user){ 
+
+  res.render('postonjoftim');
+
+  }
+
+  else{
+
+    res.send('Session Expired');
+
+  }
+  
+
+ });

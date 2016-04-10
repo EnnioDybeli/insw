@@ -37,20 +37,3 @@ router.get('/list', function(req, res){
 
 });
 
-
-router.get('/home', function(req, res){
-
-  if(req.user){ 
-
-  res.render('post',{User:req.user});
-
-  }
-
-  else{
-
-    res.send('not authh');
-
-  }
-  
-
- });
