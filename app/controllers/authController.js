@@ -131,7 +131,7 @@ passport.use('register', new LocalStrategy({
 
             console.log('User Registration succesful'); 
 
-              var activationURL = 'http://insw.herokuapp.com/email-verification/' + student.verificationToken;
+              var activationURL = 'Klino ne linkun e meposhtem dhe logohuni per tu verifikuar si user i meteor <br>  http://insw.herokuapp.com/email-verification/' + student.verificationToken;
 
               var sendgrid  = require('sendgrid')(process.env.SENDGRID_USERNAME, process.env.SENDGRID_PASSWORD);
 
@@ -139,8 +139,8 @@ passport.use('register', new LocalStrategy({
 
                 to:        student.email ,
                 from:     'app49273626@heroku.com',
-                subject:  'No Reply',
-                text:     activationURL
+                subject:  'MeteorCMS Verification - No Reply',
+                text:      activationURL
               },
 
               function(err, json) {
