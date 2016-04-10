@@ -27,7 +27,7 @@ router.get('/home', function(req, res){
 
 router.get('/post', function(req, res){
 
-  if(req.user){ 
+  if(req.user && req.user.authenticated === true){ 
   res.render('postonjoftim');
   }
 
