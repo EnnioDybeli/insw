@@ -14,7 +14,7 @@ module.exports = function (app) {
 
 router.get('/home', function(req, res){
 
-  if(req.user){ 
+  if(req.user.authenticated === true){ 
   res.render('post',{User:req.user});
   }
 
@@ -27,7 +27,7 @@ router.get('/home', function(req, res){
 
 router.get('/post', function(req, res){
 
-  if(req.user.authenticated === true){ 
+  if(req.user){ 
   res.render('postonjoftim');
   }
 
