@@ -50,7 +50,7 @@ router.get('/email-verification/:token', function(req, res){
       if(err)
         console.log(err);
 
-      res.render('homepage',{message:'Account Verified, please login'});
+      res.render('post',{User:user});
     });
 
  });
