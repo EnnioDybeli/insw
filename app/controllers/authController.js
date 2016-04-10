@@ -5,7 +5,8 @@ var express = require('express'),
     LocalStrategy = require('passport-local').Strategy,
     flash = require('express-flash'),
     passport = require('passport'),
-    bcrypt = require('bcrypt-nodejs');
+    bcrypt = require('bcrypt-nodejs'),
+    randtoken = require('rand-token');
 
 
 var fshnEmail = function(email){
@@ -68,11 +69,11 @@ passport.use('login', new LocalStrategy({
                 { message: 'Invalid email'});                 
         }
 
-        if ( !user.validPassword(password) ){
+        if ( !user.validPassword(password) || user.authenticated == false){
 
-          console.log('Invalid Password');
+          console.log('Invalid Password or not activated');
           return done(null, false, 
-              { message: 'Invalid Password'});
+              { message: 'Invalid Password or not activated'});
         }
 
         return done(null, user);
@@ -119,6 +120,7 @@ passport.use('register', new LocalStrategy({
           student.number = req.body.number;
           student.year = req.body.year;
           student.group = req.body.group;
+          student.verificationToken = randtoken.generate('16');
 
           console.log(student.name)
 
@@ -129,7 +131,23 @@ passport.use('register', new LocalStrategy({
 
             console.log('User Registration succesful'); 
 
-            return done(null, student);
+              var activationURL = 'http://www.insw.herokuapp.com/email-verification/' + student.verificationToken;
+
+              var sendgrid  = require('sendgrid')(process.env.SENDGRID_USERNAME, process.env.SENDGRID_PASSWORD);
+              sendgrid.send({
+                to:        student.email ,
+                from:     'app49273626@heroku.com',
+                subject:  'No Reply',
+                text:     activationURL
+              }, function(err, json) {
+                if (err) { return console.error(err); }
+                console.log(json);
+              });            
+
+
+
+
+            return done(null, student,{message:'Open Email to verify account'});
 
           });
         }

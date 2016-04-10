@@ -13,7 +13,7 @@ module.exports = function (app) {
 
 
  router.post('/student/create', passport.authenticate('register', {
-    successRedirect: '/home',
+    successRedirect: '/',
     failureRedirect: '/register/student',
     failureFlash : true 
   }));
@@ -37,4 +37,22 @@ router.get('/list', function(req, res){
 
 });
 
+
+router.get('/email-verification/:token', function(req, res){
+
+  User.findOne('verificationToken':req.params.token,function(err,user){
+    if(err)
+      res.send(err);
+
+    user.authenticated = true;
+
+    user.save(function(err){
+      if(err)
+        console.log(err);
+
+      res.render('homepage',{message:'Account Verified, please login'});
+    });
+ });
+
+});
 

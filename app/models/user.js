@@ -37,6 +37,15 @@ var UserSchema = new Schema({
 		type:'String'
 	},
 
+	verificationToken:{
+		type:'String'
+	},
+
+	authenticated:{
+		type:'Boolean',
+		default:false
+	},
+
 	admin:{
 		type:'Boolean',
 		default: false
