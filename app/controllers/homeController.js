@@ -13,7 +13,7 @@ module.exports = function (app) {
 router.get('/', function (req, res, next) {
       req.logout();
       res.render('homepage',{
-        message: req.flash('error')
+        message: req.flash('success')
       });
 
 });

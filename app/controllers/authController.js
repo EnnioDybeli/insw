@@ -149,8 +149,6 @@ passport.use('register', new LocalStrategy({
               });            
 
 
-
-
             return done(null, student,{message:'Open Email to verify account'});
 
           });
