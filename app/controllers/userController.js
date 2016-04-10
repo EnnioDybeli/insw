@@ -44,7 +44,7 @@ router.get('/email-verification/:token', function(req, res){
     if(err)
       res.send(err);
 
-    user.authenticated = true;
+    if (user.authenticated){
 
     user.save(function(err){
       if(err)
@@ -52,6 +52,11 @@ router.get('/email-verification/:token', function(req, res){
 
       res.redirect('/');
     });
+    } else {
+
+      res.send('link is too old');
+
+    }
 
  });
 
