@@ -40,7 +40,7 @@ router.get('/list', function(req, res){
 
 router.get('/email-verification/:token', function(req, res){
 
-  User.find({'verificationToken':req.params.token},function(err,user){
+  User.findOne({'verificationToken':req.params.token},function(err,user){
     if(err)
       res.send(err);
 

@@ -14,7 +14,7 @@ module.exports = function (app) {
 
 router.get('/home', function(req, res){
 
-  if(req.user){ 
+  if(req.user && user.verificationToken == true){ 
   res.render('post',{User:req.user});
   }
 
