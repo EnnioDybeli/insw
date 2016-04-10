@@ -134,12 +134,16 @@ passport.use('register', new LocalStrategy({
               var activationURL = 'http://insw.herokuapp.com/email-verification/' + student.verificationToken;
 
               var sendgrid  = require('sendgrid')(process.env.SENDGRID_USERNAME, process.env.SENDGRID_PASSWORD);
+
               sendgrid.send({
+
                 to:        student.email ,
                 from:     'app49273626@heroku.com',
                 subject:  'No Reply',
                 text:     activationURL
-              }, function(err, json) {
+              },
+
+              function(err, json) {
                 if (err) { return console.error(err); }
                 console.log(json);
               });            

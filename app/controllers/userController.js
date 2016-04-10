@@ -50,7 +50,7 @@ router.get('/email-verification/:token', function(req, res){
       if(err)
         console.log(err);
 
-      res.redirect('/home',{User:user});
+      res.redirect('/');
     });
 
  });
