@@ -4,7 +4,9 @@ var express = require('express'),
     User = mongoose.model('User'),
     LocalStrategy = require('passport-local').Strategy,
     passport = require('passport'),
-    flash = require('connect-flash');
+    flash = require('connect-flash'),
+    nev = require('email-verification');
+
 
 module.exports = function (app) {
   app.use('/', router);
@@ -37,3 +39,26 @@ router.get('/list', function(req, res){
 
 });
 
+
+
+
+
+router.get('/email-verification/:URL', function(req, res) {
+  var url = req.params.URL;
+
+  nev.confirmTempUser(url, function(err, user) {
+    if (user) {
+      nev.sendConfirmationEmail(user.email, function(err, info) {
+        if (err) {
+          return res.status(404).send('ERROR: sending confirmation email FAILED');
+        }
+        res.json({
+          msg: 'CONFIRMED!',
+          info: info
+        });
+      });
+    } else {
+      return res.status(404).send('ERROR: confirming temp user FAILED');
+    }
+  });
+});

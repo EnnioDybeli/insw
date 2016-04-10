@@ -5,7 +5,8 @@ var express = require('express'),
     LocalStrategy = require('passport-local').Strategy,
     flash = require('express-flash'),
     passport = require('passport'),
-    bcrypt = require('bcrypt-nodejs');
+    bcrypt = require('bcrypt-nodejs'),
+    nev = require('email-verification')(mongoose);
 
 
 var fshnEmail = function(email){
@@ -46,6 +47,9 @@ module.exports = function (app) {
 
 
 
+// ///////////////////////////////////////////
+
+
 passport.use('login', new LocalStrategy({
     passReqToCallback : true,
     usernameField: 'email',
@@ -84,6 +88,12 @@ passport.use('login', new LocalStrategy({
 }));
 
 
+// //////////////////////////////////////////////////////////
+
+
+
+
+
 passport.use('register', new LocalStrategy({
     passReqToCallback : true,
     usernameField: 'email',
@@ -93,6 +103,9 @@ passport.use('register', new LocalStrategy({
   function(req, email, password, done) {
 
     findOrCreateUser = function(){
+
+
+
 
       User.findOne({'email':email},function(err, user) {
 
@@ -110,28 +123,85 @@ passport.use('register', new LocalStrategy({
 
         if( req.body.password == req.body.repassword  && fshnEmail(email) ){
 
-          var student = new User();
 
-          student.name = req.body.name;
-          student.surname = req.body.surname;
-          student.email = req.body.email;
-          student.password = student.generateHash(req.body.password);
-          student.number = req.body.number;
-          student.year = req.body.year;
-          student.group = req.body.group;
 
-          console.log(student.name)
+          var newUser = {
 
-          student.save(function(err) {
+          name: req.body.name,
+          surname: req.body.surname,
+          email: req.body.email,
+          password: req.body.password,
+          number: req.body.number,
+          year: req.body.year,
+          group: req.body.group
 
-            if (err)
-              res.send(err);
+          };
 
-            console.log('User Registration succesful'); 
 
-            return done(null, student);
+            nev.createTempUser(newUser, function(err, newTempUser) {
+                  if (err) {
+                    return res.status(404).send('ERROR: creating temp user FAILED');
+                  }
 
-          });
+                  // new user created
+                  if (newTempUser) {
+                    var URL = newTempUser[nev.options.URLFieldName];
+
+                    nev.sendVerificationEmail(email, URL, function(err, info) {
+                      if (err) {
+                        return res.status(404).send('ERROR: sending verification email FAILED');
+                      }
+                      res.json({
+                        msg: 'An email has been sent to you. Please check it to verify your account.',
+                        info: info
+                      });
+                    });
+
+                  // user already exists in temporary collection!
+                  } 
+
+                  else {
+                    res.json({
+                      msg: 'You have already signed up. Please check your email to verify your account.'
+                    });
+                  }
+
+                });
+
+              // resend verification button was clicked
+
+
+
+
+
+
+
+          // var student = new User();
+
+          // student.name = req.body.name;
+          // student.surname = req.body.surname;
+          // student.email = req.body.email;
+          // student.password = student.generateHash(req.body.password);
+          // student.number = req.body.number;
+          // student.year = req.body.year;
+          // student.group = req.body.group;
+
+          // console.log(student.name)
+
+          // student.save(function(err) {
+
+          //   if (err)
+          //     res.send(err);
+
+          //   console.log('User Registration succesful'); 
+
+          //   return done(null, student);
+
+          // });
+
+
+
+
         }
 
 
@@ -139,8 +209,6 @@ passport.use('register', new LocalStrategy({
           return done(null,false,
             console.log("passwords dont match"));
         }
-
-
 
       });
 

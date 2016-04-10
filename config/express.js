@@ -10,7 +10,9 @@ var methodOverride = require('method-override');
 var passport = require('passport');
 var expressSession = require('express-session');
 var flash = require('express-flash');
-
+var mongoose = require('mongoose');
+var nev = require('email-verification')(mongoose);
+var User = mongoose.model('User');
 
 
 
@@ -57,6 +59,53 @@ module.exports = function(app, config) {
     next(err);
   });
   
+
+//////////////////////////////////////////////////////////////////////////////// NEV CONFIG
+
+nev.configure({
+    verificationURL: 'http://localhost:3000/email-verification/${URL}',
+    persistentUserModel: User,
+    expirationTime: 600,
+ 
+    transportOptions: {
+        service: 'Gmail',
+        auth: {
+            user: 'meteorcms2016@gmail.com',
+            pass: 'meteor2016'
+        }
+    },
+    verifyMailOptions: {
+        from: 'Do Not Reply <myawesomeemail_do_not_reply@gmail.com>',
+        subject: 'Please confirm account',
+        html: 'Click the following link to confirm your account:</p><p>${URL}</p>',
+        text: 'Please confirm your account by clicking the following link: ${URL}'
+    }
+});
+
+
+nev.generateTempUserModel(User, function(err, tempUserModel) {
+  if (err) {
+    console.log(err);
+    return;
+  }
+  console.log('generated temp user model:');
+});
+ 
+
+// using a predefined file 
+var TempUser = require('../app/models/user');
+
+nev.configure({
+    tempUserModel: TempUser 
+});
+
+
+
+/////////////////////////////////////////////////////////////////////////////////// end NEV
+
+
+
+
   if(app.get('env') === 'development'){
     app.use(function (err, req, res, next) {
       res.status(err.status || 500);
