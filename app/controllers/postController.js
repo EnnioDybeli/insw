@@ -22,7 +22,7 @@ router.get('/home', function(req, res){
 
       res.render('post',{
         User:req.user,
-        Posts:posts
+        Posts:posts.reverse()
       });
 
     })
