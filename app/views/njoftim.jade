@@ -3,7 +3,7 @@ each post in Posts
             .left-blog-post
               img(src="img/rectangle.png")
               br
-              a(href='#')=post.author
+              a(href='/user-post/#{post.author}')=post.author
               br
               span=post.date
               //- br

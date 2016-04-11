@@ -5,10 +5,10 @@ block content
     .post
       header
         .logo
-          img(src="img/logo2.png")
+          img(src="/img/logo2.png")
         .avatar
           span=User.name + " " + User.surname
-          img(src='img/avatar.png')
+          img(src='/img/avatar.png')
       .blog
         .menu
           ul.menulist
@@ -32,9 +32,9 @@ block content
         each post in Posts
           .blog-post
             .left-blog-post
-              img(src="img/rectangle.png")
+              img(src="/img/rectangle.png")
               br
-              a(href='#')=post.author
+              a(href='/user-post/#{post.author}')=post.author
               br
               span=post.date
               //- br
@@ -64,8 +64,8 @@ block content
         //-     p consectetur adipiscing elit. Ut vitae est nunc. Aenean finibus, ante placerat cursus fermentum, nulla erat ultrices quam, ut sollicitudin ipsum massa ultrices nibh. Integer vel ligula fermentum, sodales risus ac, feugiat magna. 
 
         //-     p semper eget et felis. Vestibulum purus massa,
-        .more-post
-          a(href='#') Lexo me shume
+        //- .more-post
+        //-   a(href='#') Lexo me shume
 
 
 

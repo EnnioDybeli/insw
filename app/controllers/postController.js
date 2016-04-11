@@ -59,7 +59,7 @@ router.post('/post', function(req, res){
 
     var njoftim = new Post();
 
-    njoftim.author = req.user.name + " " + req.user.surname;
+    njoftim.author = req.user.name + req.user.surname;
     njoftim.group = req.body.group;
     njoftim.year = req.body.year;
     njoftim.text = req.body.text;
@@ -97,6 +97,27 @@ router.get('/ajax/tik', function(req, res){
   }
 
  });
+
+
+
+router.get('/user-post/:author', function(req, res){
+
+
+  if(req.user){
+
+
+    Post.find({'author':req.params.author},function(err,posts){
+
+      res.render('post',{ Posts:posts,User:req.user });
+
+    })
+
+  }else{
+    res.redirect('/')
+  }
+
+ });
+
 
 
 
