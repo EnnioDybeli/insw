@@ -11,15 +11,24 @@ block content
           img(src='img/avatar.png')
       .blog
         .menu
-          ul
+          ul.menulist
 
-            li.active Kryesore
-            li TIK i pergjithshem
-            li Grupi #{User.group}
-            li Viti #{User.year}
+            li( class="active" id="kryesore" )
+              | Kryesore
+
+            li( id="tik" )
+              | TIK i pergjithshem
+
+            li( id="#{User.group}" )
+              | Grupi #{User.group}
+
+            li( id="#{User.year}" )
+              | Viti #{User.year}
+
+
           a(href='/post') + Posto nje njoftim
 
-
+        .posts-container
         each post in Posts
           .blog-post
             .left-blog-post
@@ -57,3 +66,8 @@ block content
         //-     p semper eget et felis. Vestibulum purus massa,
         .more-post
           a(href='#') Lexo me shume
+
+
+
+    script(src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous")
+    script(src='/js/main.js')

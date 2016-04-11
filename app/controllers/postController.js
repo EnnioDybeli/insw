@@ -79,3 +79,26 @@ router.post('/post', function(req, res){
   }
 
  });
+
+
+
+router.get('/ajax/tik', function(req, res){
+
+  if(req.user){
+
+    Post.find(function(err,posts){
+
+      res.render('njoftim',{ Posts:posts });
+
+    })
+
+  }else{
+    res.redirect('/')
+  }
+
+ });
+
+
+
+
+
