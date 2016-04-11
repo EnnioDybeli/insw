@@ -24,7 +24,7 @@ var PostSchema = new Schema({
 		type:'String'
 	},
 
-	feed:{
+	service:{
 		type:'String'
 	},
 

@@ -15,7 +15,20 @@ module.exports = function (app) {
 router.get('/home', function(req, res){
 
   if(req.user){ 
-  res.render('post',{User:req.user});
+
+    Post.find(function(err,posts){
+      if(err)
+        res.send(err);
+
+      res.render('post',{
+        User:req.user,
+        Posts:posts
+      });
+
+    })
+
+
+  
   }
 
   else{
@@ -33,6 +46,36 @@ router.get('/post', function(req, res){
 
   else{
     res.send('not authh');
+  }
+
+ });
+
+
+
+router.post('/post', function(req, res){
+
+  if(req.user){ 
+
+
+    var njoftim = new Post();
+
+    njoftim.author = req.user.name + " " + req.user.surname;
+    njoftim.group = req.body.group;
+    njoftim.year = req.body.year;
+    njoftim.text = req.body.text;
+    njoftim.service = req.body.service;
+
+    njoftim.save(function(err){
+      if(err)
+        res.send(err);
+
+      res.redirect('/home');
+
+    });
+  
+
+  } else{
+    res.redirect('/');
   }
 
  });

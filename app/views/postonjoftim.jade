@@ -14,28 +14,26 @@ block content
           span Posto nje njoftim
           a(href='/home') Kthehu ne faqen kryesore
         .blog-form
-          .blog-form-left
-            textarea(rows="12" cols="50" placeholder='Permbajtja e njoftimit' id='njoftim')
-          .blog-form-right
-            span Posto tek: 
-            input(list="viti_shkollor" name="viti_shkollor" placeholder='Viti' id="viti")
-            datalist#viti_shkollor
-              option(value='1')
-              option(value='2')
-              option(value='3')
-            input(list="grupi" name="grupi" placeholder='Grupi' id="grupi_shkollor")
-            datalist#grupi
-              option(value='A1')
-              option(value='A2')
-              option(value='B1')
-              option(value='B2')
-            br
-            span Njofto permes:
-            input(list="njoftimi" name="njoftimi" placeholder='Njofto' id="njofto")
-            datalist#njoftimi
-              option(value='Email dhe SMS')
-              option(value='Email')
-              option(value='SMS')
-        .blog-footer
-          input(type='submit'  id='posto')
-          a(href="/home" id='anullo')
+          form(action="/post" method="post")
+              .blog-form-left
+                textarea(rows="12" cols="50" placeholder='Permbajtja e njoftimit' name="text" id='njoftim')
+              .blog-form-right
+                span Posto tek: 
+                select(list="viti_shkollor" name="year" id="viti")
+                  option(value='1')="1"
+                  option(value='2')="2"
+                  option(value='3')="3"
+                select(list="grupi" name="group" id="grupi_shkollor")
+                  option(value='A1')="A1"
+                  option(value='A2')="A2"
+                  option(value='B1')="B1"
+                  option(value='B2')="B2"
+                br
+                span Njofto permes:
+                select(list="njoftimi" name="service" placeholder='Njofto' id="njofto")
+                  option(value='BOTH')="Email dhe SMS"
+                  option(value='EMAIL')="Email"
+                  option(value='SMS')="SMS"
+              .blog-footer
+                input(type='submit'  id='posto')
+                a(href="/home" id='anullo')
