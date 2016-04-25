@@ -14,11 +14,18 @@
   });
 
 
+$('.avatar').on('click',function(){
+
+  $('.logout').toggleClass('show');
+
+});
+
+
 
 
 $('.menulist > li').click(function(){
 
-	var route = $(this).attr('id');
+  var route = $(this).attr('id');
 
   $.get('/ajax/'+route ,function(data){
 

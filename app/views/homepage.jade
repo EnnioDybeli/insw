@@ -4,7 +4,8 @@ block content
     .index
       header
         .logo
-          img(src="img/logo.png")
+          a(href='/')
+            img(src="img/logo.png")
         .form
           p #{message}
           form(method="post" action="/login")
@@ -23,4 +24,3 @@ block content
             a(href='register/student' id='student') Per Studentet
             a(href='/register/profesor' id='fakulteti') Per Fakultetin
       footer
-    script(src='scripts/main.js')

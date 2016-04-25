@@ -5,20 +5,22 @@ block content
     .signup
       header
         .logo
-          img(src="/img/logo2.png")
+          a(href='/')
+            img(src="/img/logo2.png")
         .register
           span Nuk je #{showtype}?
 
           if showtype == 'student'
-            a(href="/register/profesor" id="register") Regjistrohu si profesor
+            a(href="/register/profesor" id="register")<i class="fa fa-user"></i> Regjistrohu si profesor
           else
-            a(href="/register/student" id="register") Regjistrohu si student
+            a(href="/register/student" id="register")<i class="fa fa-graduation-cap" aria-hidden="true"></i> Regjistrohu si student
 
       .main
         .content-header
-          <i class="fa fa-user"></i>
-          span Regjistrohu si #{showtype}
-          p #{message}
+          if showtype != 'student'
+            a(href="/register/profesor" id="register")<i class="fa fa-user"></i> Regjistrohu si profesor
+          else
+            a(href="/register/student" id="register")<i class="fa fa-graduation-cap" aria-hidden="true"></i> Regjistrohu si student
         .content
             form(action="/student/create" method="post")
                 .person
