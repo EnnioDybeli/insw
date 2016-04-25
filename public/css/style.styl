@@ -8,7 +8,6 @@ body
   font-family: 'Roboto',sans-serif
   width:100%
   height 100%
-  color: color
   margin: 0
   padding: 0
   background-color: #fff
@@ -176,6 +175,8 @@ header
     i 
       padding-top 25px
       padding-right 30px
+    a
+      color #bdbdbd
   .content
     margin-top 45px
     text-align center
@@ -268,9 +269,10 @@ header
       span
         color white
         padding-right 15px
+        cursor: pointer
   .blog
     background-color white
-    margin 40px auto
+    margin 40px auto 0 auto
     width 970px
     height 100%
     position relative
@@ -384,47 +386,43 @@ header
         font-size 15px
         color #6b71fe
     .blog-form
-      height 350px
+      height 100%
       margin-top 30px
-      border-bottom 1px solid #ebebf4
-      .blog-form-left
+      padding 0 250px
+      #titulli
+        width 100%
+        height 30px
+        border-radius 5px
+        border 1px solid #bdbdbd
+        margin-bottom 50px
+      #njoftim
+        width 100%
+        height 250px
+        border-radius 5px
+        border 1px solid #bdbdbd
+        margin-bottom 50px
+      .posto-tek
+        width 40%
         float left
-        width 50%
-        #njoftim
-          margin 30px 0 0 30px
-          border-radius 5px
-          border 1px solid #bdbdbd
-        ::-webkit-input-placeholder
-          padding-left 15px
-          padding-top 15px
-      .blog-form-right
-        float right
-        width 50%
-        ::-webkit-input-placeholder
-          padding-left 15px
-        span
-          color #bdbdbd
-          padding-right 30px
-        input
-          margin 30px 30px 10px 0
+        margin-bottom 50px
+        padding-right 50px 
         #viti
-          width 150px
+          width 100%
           height 30px
           border-radius 5px
           border 1px solid #bdbdbd
-          cursor pointer
-        #grupi_shkollor
-          width 150px
-          height 30px
-          border-radius 5px
-          border 1px solid #bdbdbd
-          cursor pointer
+      .njofto-permes
+        width 40%
+        float right
+        margin-bottom 50px
         #njofto
-          width 150px
+          width 100%
           height 30px
           border-radius 5px
           border 1px solid #bdbdbd
-          cursor pointer
+      .upload
+        width 60%
+        margin-bottom 50px
     .blog-footer
       height 100px
       text-align center
@@ -447,5 +445,17 @@ header
         border 1px solid #bdbdbd
         border-radius 3px
         cursor pointer
+        padding 12px 55px
+        font-size 13px
       #anullo:hover
         background-color #bdbdbd - 20
+        
+.logout
+  display: none
+  z-index: 90 !important
+  height: 40px
+  width: 120px
+  background: #BEBEC3
+  margin-top: 28px
+.show 
+  display: block !important
