@@ -16,11 +16,7 @@ var PostSchema = new Schema({
 		type:'String'
 	},
 
-	group:{
-		type:'String'
-	},
-
-	year:{
+	title:{
 		type:'String'
 	},
 
@@ -30,8 +26,11 @@ var PostSchema = new Schema({
 
 	text:{
 		type:'String'
-	}
+	},
 
+	feed:{
+		type:'String'
+	}
 
 });
 

@@ -49,9 +49,17 @@ router.get('/email-verification/:token', function(req, res){
 });
 
 
+router.get('/logout', function(req, res){
+
+  req.logout();
+  res.redirect('/')
+
+});
+
+
+
 
 // DEMO ONLY /////////////////////////////////////
-
 
 
 router.get('/list', function(req, res){

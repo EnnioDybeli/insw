@@ -14,37 +14,34 @@ block content
           ul.menulist
 
             li( class="active" id="kryesore" )
-              | Kryesore
+              | Pergjithshme
 
-            li( id="tik" )
-              | TIK i pergjithshem
+            li( id="#{Paralel}" )
+              | Paraleli 
 
             li( id="#{User.group}" )
               | Grupi #{User.group}
-
-            li( id="#{User.year}" )
-              | Viti #{User.year}
 
 
           a(href='/post') + Posto nje njoftim
 
         .posts-container
-        each post in Posts
-          .blog-post
-            .left-blog-post
-              img(src="/img/rectangle.png")
-              br
-              a(href='/user-post/#{post.author}')=post.author
-              br
-              span=post.date
-              //- br
-              //- span 31 March, 2016 
-            .right-blog-post
-              h3=post.text
+        //- each post in Posts
+        //-   .blog-post
+        //-     .left-blog-post
+        //-       img(src="/img/rectangle.png")
+        //-       br
+        //-       a(href='/user-post/#{post.author}')=post.author
+        //-       br
+        //-       span=post.date
+        //-       //- br
+        //-       //- span 31 March, 2016 
+        //-     .right-blog-post
+        //-       h3=post.text
 
-              p=post.text
-          .more-post
-              a(href='#') Lexo me shume
+        //-       p=post.text
+        //-   .more-post
+        //-       a(href='#') Lexo me shume
 
 
 

@@ -22,7 +22,8 @@ router.get('/home', function(req, res){
 
       res.render('post',{
         User:req.user,
-        Posts:posts.reverse()
+        // Posts:posts.reverse(),
+        Paralel:req.user.group.slice(0,1)
       });
 
     })
@@ -41,7 +42,10 @@ router.get('/home', function(req, res){
 router.get('/post', function(req, res){
 
   if(req.user){ 
-  res.render('postonjoftim');
+  res.render('postonjoftim',{
+        User:req.user,
+        Paralel:req.user.group.slice(0,1)    
+  });
   }
 
   else{
@@ -60,8 +64,8 @@ router.post('/post', function(req, res){
     var njoftim = new Post();
 
     njoftim.author = req.user.name + req.user.surname;
-    njoftim.group = req.body.group;
-    njoftim.year = req.body.year;
+    njoftim.title = req.body.title;
+    njoftim.feed = req.body.feed;
     njoftim.text = req.body.text;
     njoftim.service = req.body.service;
 
@@ -82,11 +86,12 @@ router.post('/post', function(req, res){
 
 
 
-router.get('/ajax/tik', function(req, res){
+router.get('/ajax/:route', function(req, res){
+
 
   if(req.user){
 
-    Post.find(function(err,posts){
+    Post.find({'feed':req.params.route},function(err,posts){
 
       res.render('njoftim',{ Posts:posts });
 
