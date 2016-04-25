@@ -14,6 +14,13 @@
   });
 
 
+$('.avatar').on('click',function(){
+
+  $('.logout').toggleClass('show');
+
+});
+
+
 
 
 $('.menulist > li').click(function(){
