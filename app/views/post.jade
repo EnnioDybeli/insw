@@ -11,7 +11,8 @@ block content
           span=User.name + " " + User.surname
           img(src='/img/avatar.png')
           .logout
-              a(href="/logout" style='color:white') logout
+            a(href="/logout")
+              | logout
       .blog
         .menu
           ul.menulist

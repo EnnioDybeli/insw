@@ -431,6 +431,25 @@ header .register a:hover {
   color: #bdbdbd;
   padding: 10px 0 0 30%;
 }
+.logout {
+  display: none;
+  z-index: 90 !important;
+  height: 40px;
+  width: 120px;
+  background: #6b71fe;
+  margin-top: 28px;
+  border-radius: 0px 4px 4px 0px;
+}
+.logout a {
+  position: relative;
+  color: #fff;
+  padding: 10px 0px 0px 10px;
+  cursor: pointer;
+  top: 10px;
+}
+.show {
+  display: block !important;
+}
 .blog .blog-header {
   border-bottom: 1px solid #ebebf4;
   height: 65px;
