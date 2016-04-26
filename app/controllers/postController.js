@@ -26,12 +26,8 @@ router.get('/home', function(req, res){
         Paralel:req.user.group.slice(0,1)
       });
 
-    })
-
-
-  
+    })  
   }
-
   else{
     res.send('not authh');
   }

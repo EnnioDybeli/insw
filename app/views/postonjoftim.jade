@@ -19,7 +19,7 @@ block content
         .blog-form
           form(action="/post" method="post")
                 p Titulli:
-                input(type="text" id="titulli")
+                input(type="text" id="titulli" name="title")
                 br
                 p Mesazhi:
                 textarea(name="text" id='njoftim')
@@ -38,9 +38,9 @@ block content
                     option(value='SMS')="SMS"
                 .upload
                   p Upload:
-                  input(id="file-upload" type="file")
-        .blog-footer
-          input(type='submit' id='posto' value='Posto')
-          a(href="/home" id='anullo') Anullo
+                      input(id="file-upload" type="file")
+                .blog-footer
+                  input(type='submit' id='posto')
+                  a(href="/home" id='anullo') Anullo
   script(src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous")
   script(src='/js/main.js')
