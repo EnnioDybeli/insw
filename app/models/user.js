@@ -37,6 +37,10 @@ var UserSchema = new Schema({
 		type:'String'
 	},
 
+	departament:{
+		type:'String'
+	},
+
 	verificationToken:{
 		type:'String'
 	},

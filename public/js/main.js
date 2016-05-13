@@ -49,5 +49,29 @@ $('.menulist > li').click(function(){
 });
 
 
+$(window).scroll(function () {
+
+  if ($(this).scrollTop() >= 100) {
+    $(".menu").css('position','fixed');
+    $(".menu").css('top','0');
+    $(".menu").css('width','970px');
+    $(".menu").css('background','white');
+    $(".menu").css('z-index','999');
+  }
+  else {
+    $(".menu").css('position','relative');
+  }
+});
+
+$(function() {    // Makes sure the code contained doesn't run until
+                  //     all the DOM elements have loaded
+
+    $('#viti').change(function(){
+        $('.paraleli').hide();
+        $('.grupi').hide();
+        $('#' + $(this).val()).show();
+    });
+
+});
 
 
