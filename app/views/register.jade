@@ -35,6 +35,7 @@ block content
                   br
                   input(type="text" id="nr" placeholder="Nr celular ku do merrni njoftimet" name="number")
                   br
+              if showtype == 'student'
                   select(name="year" placeholder="Viti" id="viti")
                     option(value='1')="1"
                     option(value='2')="2"
@@ -44,8 +45,17 @@ block content
                     option(value='A2')="A2"
                     option(value='B1')="B1"
                     option(value='B2')="B2"
+              else
+                  span Departamenti : 
+                  select(name="departament" placeholder="Departamenti" id="departamenti" )
+                    option(value='Informatike')="Informatike"
+                    option(value='Biologji')="Biologji"
+                    option(value='Matematike')="Matematike"
+                    option(value='Kimi')="Kimi"
+                    option(value='Fizike')="Fizike"
+                  
                 .submit
-                    input(type='submit' id='regjistrohu')
+                    input(type='submit' id='regjistrohu' value="Regjistrohu")
 
     script(src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous")
     script(src='/js/main.js')
