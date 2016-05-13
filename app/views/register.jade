@@ -27,7 +27,12 @@ block content
                   input(type="text" id="emri" placeholder="Emri" name="name")
                   input(type="text" id="mbiemri" placeholder="Mbiemri" name="surname")
                 .other
-                  input(type="email" id="email" placeholder="Emaili juaj @fshnstudent.info" name="email")
+
+                  if showtype == 'student'
+                    input(type="email" id="email" placeholder="Emaili juaj @fshnstudent.info" name="email")
+                  else
+                    input(type="email" id="email" placeholder="Emaili juaj @fshn.edu.al" name="email")
+
                   br
                   input(type="password" id="password" placeholder="Password" name="password")
                   br

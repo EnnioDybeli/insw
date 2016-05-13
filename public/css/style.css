@@ -277,6 +277,14 @@ header .register a:hover {
   border-radius: 3px;
   cursor: pointer;
 }
+.main .content #departamenti {
+  width: 150px;
+  height: 35px;
+  margin-bottom: 30px;
+  border: 1px solid #bdbdbd;
+  border-radius: 3px;
+  cursor: pointer;
+}
 .main .submit #regjistrohu {
   width: 150px;
   height: 35px;
