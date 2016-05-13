@@ -63,6 +63,15 @@ $(window).scroll(function () {
   }
 });
 
+$(function() {    // Makes sure the code contained doesn't run until
+                  //     all the DOM elements have loaded
 
+    $('#viti').change(function(){
+        $('.paraleli').hide();
+        $('.grupi').hide();
+        $('#' + $(this).val()).show();
+    });
+
+});
 
 

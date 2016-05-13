@@ -505,6 +505,20 @@ header .register a:hover {
   border-radius: 5px;
   border: 1px solid #bdbdbd;
 }
+.blog .blog-form .posto-tek .paraleli {
+  width: 50%;
+  height: 30px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 1px solid #bdbdbd;
+}
+.blog .blog-form .posto-tek .grupi {
+  width: 50%;
+  height: 30px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 1px solid #bdbdbd;
+}
 .blog .blog-form .njofto-permes {
   width: 40%;
   float: right;
