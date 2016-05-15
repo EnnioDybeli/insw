@@ -11,7 +11,7 @@ var express = require('express'),
 
 var fshnEmail = function(email){
 
-  var studentRe = /\w+\.\w+@fshnstudent\.info/; 
+  var studentRe = /\w+\.\w+@fshnstudent\.info/;
   var profesorRe = /\w+\.\w+@fshn\.edu\.al/;
 
   if( studentRe.exec(email) || profesorRe.exec(email) ){
@@ -20,10 +20,10 @@ var fshnEmail = function(email){
 
   }
 
-  else{ 
+  else{
 
-    return false 
-    
+    return false
+
   }
 
 };
@@ -52,9 +52,9 @@ passport.use('login', new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password'
   },
-  function(req, email, password, done) { 
+  function(req, email, password, done) {
 
-    User.findOne({ 'email' :  email }, 
+    User.findOne({ 'email' :  email },
 
 
       function(err, user) {
@@ -65,15 +65,15 @@ passport.use('login', new LocalStrategy({
 
         if (!user){
           console.log('User Not Found with username '+ email);
-          return done(null, false, 
-                { message: 'Invalid email'});                 
+          return done(null, false,
+                { message: 'Invalid email' });
         }
 
         if ( !user.validPassword(password) || user.authenticated == false){
 
           console.log('Invalid Password or not activated');
-          return done(null, false, 
-              { message: 'Invalid Password or not activated'});
+          return done(null, false,
+              { message: 'Invalid Password or not activated' });
         }
 
         return done(null, user);
@@ -106,7 +106,7 @@ passport.use('register', new LocalStrategy({
           // res.send('User already exists');
           console.log('User already exists');
           return done(null, false, {message:"This user already exists"});
-        } 
+        }
 
 
         if( req.body.password == req.body.repassword  && fshnEmail(email) ){
@@ -129,7 +129,7 @@ passport.use('register', new LocalStrategy({
             if (err)
               res.send(err);
 
-            console.log('User Registration succesful'); 
+            console.log('User Registration succesful');
 
               var activationURL = 'Klino ne linkun e meposhtem dhe logohuni per tu verifikuar si user i meteor <br>  http://insw.herokuapp.com/email-verification/' + student.verificationToken;
 
@@ -146,7 +146,7 @@ passport.use('register', new LocalStrategy({
               function(err, json) {
                 if (err) { return console.error(err); }
                 console.log(json);
-              });            
+              });
 
 
             return done(null, student,{message:'Open Email to verify account'});
@@ -165,8 +165,8 @@ passport.use('register', new LocalStrategy({
       });
 
     };
-     
-    // Delay the execution of findOrCreateUser and execute 
+
+    // Delay the execution of findOrCreateUser and execute
     // the method in the next tick of the event loop
     process.nextTick(findOrCreateUser);
 

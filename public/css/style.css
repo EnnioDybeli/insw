@@ -16,6 +16,14 @@ body {
 body a {
   text-decoration: none;
 }
+::-webkit-input-placeholder {
+  color: #585858;
+  font-size: 13px;
+}
+input[type="submit"] {
+  font-size: 14px;
+  font-weight: 500;
+}
 header {
   width: 100%;
   padding: 20px 0;
@@ -364,8 +372,9 @@ header .register a:hover {
   color: #6b71fe;
 }
 .post .blog .blog-post .left-blog-post span {
-  color: #bdbdbd;
-  font-size: 15px;
+  color: #76767a;
+  font-size: 13px;
+  line-height: 5px;
 }
 .post .blog .blog-post .right-blog-post {
   float: right;
@@ -374,7 +383,7 @@ header .register a:hover {
 }
 .post .blog .blog-post .right-blog-post p {
   width: 80%;
-  color: #bdbdbd;
+  color: #58585c;
 }
 .post .blog .more-post {
   height: 40px;
@@ -435,6 +444,7 @@ header .register a:hover {
   width: 120px;
   background: #6b71fe;
   margin-top: 28px;
+  border-radius: 0px 4px 4px 0px;
 }
 .logout a {
   position: relative;
