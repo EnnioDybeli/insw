@@ -14,19 +14,23 @@ var fshnEmail = function(email){
   var studentRe = /\w+\.\w+@fshnstudent\.info/;
   var profesorRe = /\w+\.\w+@fshn\.edu\.al/;
 
-  if( studentRe.exec(email) || profesorRe.exec(email) ){
+  if(studentRe.exec(email)){
+    return 'student';
+  }
 
-    return true;
-
+  if(profesorRe.exec(email)){
+    return 'profesor';
   }
 
   else{
-
     return false
-
   }
 
 };
+
+
+
+
 
 
 
@@ -109,10 +113,9 @@ passport.use('register', new LocalStrategy({
         }
 
 
-        if( req.body.password == req.body.repassword  && fshnEmail(email) ){
+        if( req.body.password == req.body.repassword  && fshnEmail(email) != false  ){
 
           var student = new User();
-
           student.name = req.body.name;
           student.surname = req.body.surname;
           student.email = req.body.email;
@@ -122,35 +125,31 @@ passport.use('register', new LocalStrategy({
           student.group = req.body.group;
           student.verificationToken = randtoken.generate('16');
 
+          if(fshnEmail(email)=="profesor"){
+            student.admin = true;
+          }
+
           console.log(student.name)
 
           student.save(function(err) {
-
             if (err)
               res.send(err);
 
             console.log('User Registration succesful');
 
-              var activationURL = 'Klino ne linkun e meposhtem dhe logohuni per tu verifikuar si user i meteor <br>  http://insw.herokuapp.com/email-verification/' + student.verificationToken;
-
+              var activationURL = 'Kliko ne linkun e meposhtem dhe logohuni per tu verifikuar si user i meteor <br>  http://insw.herokuapp.com/email-verification/' + student.verificationToken;
               var sendgrid  = require('sendgrid')(process.env.SENDGRID_USERNAME, process.env.SENDGRID_PASSWORD);
-
               sendgrid.send({
-
                 to:        student.email ,
                 from:     'app49273626@heroku.com',
                 subject:  'MeteorCMS Verification - No Reply',
                 text:      activationURL
               },
-
               function(err, json) {
                 if (err) { return console.error(err); }
                 console.log(json);
               });
-
-
             return done(null, student,{message:'Open Email to verify account'});
-
           });
         }
 

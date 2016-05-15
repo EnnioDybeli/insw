@@ -2,10 +2,10 @@
 
   $.get('/ajax/kryesore' ,function(data){
 
-    if(data){ 
+    if(data){
          $('.posts-container').append(data);
     }
-    
+
     else{
         console.log('no data recieved');
 
@@ -29,11 +29,11 @@ $('.menulist > li').click(function(){
 
   $.get('/ajax/'+route ,function(data){
 
-    if(data){ 
+    if(data){
          $('.posts-container').empty();
          $('.posts-container').append(data);
     }
-    
+
     else{
         console.log('no data recieved');
         $('.posts-container').empty();
@@ -47,7 +47,3 @@ $('.menulist > li').click(function(){
   $(this).addClass('active');
 
 });
-
-
-
-

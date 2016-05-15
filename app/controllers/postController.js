@@ -1,11 +1,13 @@
-var express = require('express'),
-    router = express.Router(),
-    mongoose = require('mongoose'),
-    User = mongoose.model('User'),
-    Post = mongoose.model('Post'),
+var express       = require('express'),
+    router        = express.Router(),
+    mongoose      = require('mongoose'),
+    User          = mongoose.model('User'),
+    Post          = mongoose.model('Post'),
     LocalStrategy = require('passport-local').Strategy,
-    passport = require('passport'),
-    flash = require('connect-flash');
+    passport      = require('passport'),
+    flash         = require('connect-flash'),
+    sendgrid      = require('sendgrid')(process.env.SENDGRID_USERNAME, process.env.SENDGRID_PASSWORD);
+;
 
 module.exports = function (app) {
   app.use('/', router);
@@ -14,7 +16,7 @@ module.exports = function (app) {
 
 router.get('/home', function(req, res){
 
-  if(req.user){ 
+  if(req.user){
 
     Post.find(function(err,posts){
       if(err)
@@ -26,7 +28,7 @@ router.get('/home', function(req, res){
         Paralel:req.user.group.slice(0,1)
       });
 
-    })  
+    })
   }
   else{
     res.send('not authh');
@@ -37,10 +39,10 @@ router.get('/home', function(req, res){
 
 router.get('/post', function(req, res){
 
-  if(req.user){ 
+  if(req.user){
   res.render('postonjoftim',{
         User:req.user,
-        Paralel:req.user.group.slice(0,1)    
+        Paralel:req.user.group.slice(0,1)
   });
   }
 
@@ -54,7 +56,7 @@ router.get('/post', function(req, res){
 
 router.post('/post', function(req, res){
 
-  if(req.user){ 
+  if(req.user){
 
 
     var njoftim = new Post();
@@ -71,8 +73,27 @@ router.post('/post', function(req, res){
 
       res.redirect('/home');
 
+      User.find(function(err,emails){
+        // console.log('users::::'+emails)
+
+        for (user in emails){
+
+          sendgrid.send({
+            to:        emails[user].email ,
+            from:     'app49273626@heroku.com',
+            subject:  'New post on Fshn',
+            text:     'Postim i ri nga' + njoftim.author + ':' + njoftim.text
+          },
+          function(err, json) {
+            if (err) { return console.error(err); }
+            console.log(json);
+          });
+
+          // console.log('emails::::'+ emails[user].email);
+        }
+      });
     });
-  
+
 
   } else{
     res.redirect('/');
@@ -89,7 +110,7 @@ router.get('/ajax/:route', function(req, res){
 
     Post.find({'feed':req.params.route},function(err,posts){
 
-      res.render('njoftim',{ Posts:posts });
+      res.render('njoftim',{ Posts:posts.reverse() });
 
     })
 
@@ -118,9 +139,3 @@ router.get('/user-post/:author', function(req, res){
   }
 
  });
-
-
-
-
-
-
