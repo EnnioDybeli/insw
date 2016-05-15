@@ -5,35 +5,42 @@ block content
     .post
       header
         .logo
-          img(src="img/logo2.png")
+          a(href='/home')
+            img(src="img/logo2.png")
         .avatar
-          span User.name + " " + User.surname
+          span=User.name + " " + User.surname
           img(src='img/avatar.png')
+          .logout
+            a(href="/logout" style='color:white') logout
       .blog
         .blog-header
           span Posto nje njoftim
           a(href='/home') Kthehu ne faqen kryesore
         .blog-form
           form(action="/post" method="post")
-              .blog-form-left
-                textarea(rows="12" cols="50" placeholder='Permbajtja e njoftimit' name="text" id='njoftim')
-              .blog-form-right
-                span Posto tek: 
-                select(list="viti_shkollor" name="feed" id="viti")
-                  option(value='kryesore')="Kryesore"
-                  option(value='#{Paralel}')="Paraleli"
-                  option(value='#{User.group}')="Grupi"
-                //- select(list="grupi" name="group" id="grupi_shkollor")
-                //-   option(value='A1')="A1"
-                //-   option(value='A2')="A2"
-                //-   option(value='B1')="B1"
-                //-   option(value='B2')="B2"
+                p Titulli:
+                input(type="text" id="titulli" name="title")
                 br
-                span Njofto permes:
-                select(list="njoftimi" name="service" placeholder='Njofto' id="njofto")
-                  option(value='BOTH')="Email dhe SMS"
-                  option(value='EMAIL')="Email"
-                  option(value='SMS')="SMS"
-              .blog-footer
-                input(type='submit'  id='posto')
-                a(href="/home" id='anullo')
+                p Mesazhi:
+                textarea(name="text" id='njoftim')
+                br
+                .posto-tek
+                  p Posto tek: 
+                  select(list="viti_shkollor" name="feed" id="viti")
+                    option(value='kryesore')="Kryesore"
+                    option(value='#{Paralel}')="Paraleli"
+                    option(value='#{User.group}')="Grupi"
+                .njofto-permes
+                  p Njofto permes:
+                  select(list="njoftimi" name="service" placeholder='Njofto' id="njofto")
+                    option(value='BOTH')="Email dhe SMS"
+                    option(value='EMAIL')="Email"
+                    option(value='SMS')="SMS"
+                .upload
+                  p Upload:
+                      input(id="file-upload" type="file")
+                .blog-footer
+                  input(type='submit' id='posto')
+                  a(href="/home" id='anullo') Anullo
+  script(src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous")
+  script(src='/js/main.js')
