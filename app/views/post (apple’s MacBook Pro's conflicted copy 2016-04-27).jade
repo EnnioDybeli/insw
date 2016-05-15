@@ -1,0 +1,74 @@
+extends layout
+block content
+
+  body
+    .post
+      header
+        .logo
+          a(href='/home')
+            img(src="/img/logo2.png")
+        .avatar
+          span=User.name + " " + User.surname
+          img(src='/img/avatar.png')
+          .logout
+            a(href="/logout")
+              | logout
+      .blog
+        .menu
+          ul.menulist
+
+            li( class="active" id="kryesore" )
+              | Pergjithshme
+
+            li( id="#{Paralel}" )
+              | Paraleli 
+
+            li( id="#{User.group}" )
+              | Grupi #{User.group}
+
+
+          a(href='/post') + Posto nje njoftim
+
+        .posts-container
+        //- each post in Posts
+        //-   .blog-post
+        //-     .left-blog-post
+        //-       img(src="/img/rectangle.png")
+        //-       br
+        //-       a(href='/user-post/#{post.author}')=post.author
+        //-       br
+        //-       span=post.date
+        //-       //- br
+        //-       //- span 31 March, 2016 
+        //-     .right-blog-post
+        //-       h3=post.text
+
+        //-       p=post.text
+        //-   .more-post
+        //-       a(href='#') Lexo me shume
+
+
+
+
+        //- .blog-post1
+        //-   .left-blog-post
+        //-     img(src="img/rectangle.png")
+        //-     br
+        //-     a(href='#') Sekretaria FSHN
+        //-     br
+        //-     span 12:30 AM
+        //-     br
+        //-     span 31 March, 2016 
+        //-   .right-blog-post
+        //-     h3 Lorem ipsum dolor sit amet, 
+
+        //-     p consectetur adipiscing elit. Ut vitae est nunc. Aenean finibus, ante placerat cursus fermentum, nulla erat ultrices quam, ut sollicitudin ipsum massa ultrices nibh. Integer vel ligula fermentum, sodales risus ac, feugiat magna. 
+
+        //-     p semper eget et felis. Vestibulum purus massa,
+        //- .more-post
+        //-   a(href='#') Lexo me shume
+
+
+
+    script(src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous")
+    script(src='/js/main.js')
