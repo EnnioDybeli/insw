@@ -40,9 +40,17 @@ router.get('/home', function(req, res){
 router.get('/post', function(req, res){
 
   if(req.user){
-  res.render('postonjoftim',{
-        User:req.user,
-        Paralel:req.user.group.slice(0,1)
+    if(req.user.admin !== true){
+      res.render('postonjoftim',{
+            User:req.user,
+            Paralel:req.user.group.slice(0,1)
+    } else {
+
+      res.render('postonjoftim',{
+            User:req.user,
+            Paralel:'none'
+    }
+
   });
   }
 
