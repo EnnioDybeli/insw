@@ -1,8 +1,8 @@
 // Example model
 
 var mongoose = require('mongoose');
-var bcrypt = require('bcrypt-nodejs');
-Schema = mongoose.Schema;
+var bcrypt   = require('bcrypt-nodejs');
+Schema       = mongoose.Schema;
 
 
 var UserSchema = new Schema({
@@ -65,4 +65,3 @@ UserSchema.methods.validPassword = function(password) {
 
 
 mongoose.model('User', UserSchema);
-

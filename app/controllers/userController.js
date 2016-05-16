@@ -1,11 +1,11 @@
-var express = require('express'),
-    router = express.Router(),
-    mongoose = require('mongoose'),
-    User = mongoose.model('User'),
-    Post = mongoose.model('Post'),
+var express       = require('express'),
+    router        = express.Router(),
+    mongoose      = require('mongoose'),
+    User          = mongoose.model('User'),
+    Post          = mongoose.model('Post'),
     LocalStrategy = require('passport-local').Strategy,
-    passport = require('passport'),
-    flash = require('connect-flash');
+    passport      = require('passport'),
+    flash         = require('connect-flash');
 
 module.exports = function (app) {
   app.use('/', router);
@@ -16,7 +16,7 @@ module.exports = function (app) {
  router.post('/student/create', passport.authenticate('register', {
     successRedirect: '/',
     failureRedirect: '/register/student',
-    failureFlash : true 
+    failureFlash : true
   }));
 
 
@@ -24,7 +24,7 @@ module.exports = function (app) {
  router.post('/login',passport.authenticate('login',{
     successRedirect: '/home',
     failureRedirect: '/',
-    failureFlash : true 
+    failureFlash : true
   }));
 
 

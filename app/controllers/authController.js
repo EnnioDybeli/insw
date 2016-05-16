@@ -1,12 +1,12 @@
-var express = require('express'),
-    router = express.Router(),
-    mongoose = require('mongoose'),
-    User = mongoose.model('User'),
+var express       = require('express'),
+    router        = express.Router(),
+    mongoose      = require('mongoose'),
+    User          = mongoose.model('User'),
     LocalStrategy = require('passport-local').Strategy,
-    flash = require('express-flash'),
-    passport = require('passport'),
-    bcrypt = require('bcrypt-nodejs'),
-    randtoken = require('rand-token');
+    flash         = require('express-flash'),
+    passport      = require('passport'),
+    bcrypt        = require('bcrypt-nodejs'),
+    randtoken     = require('rand-token');
 
 
 var fshnEmail = function(email){

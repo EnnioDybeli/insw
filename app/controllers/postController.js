@@ -24,7 +24,6 @@ router.get('/home', function(req, res){
 
       res.render('post',{
         User:req.user,
-        // Posts:posts.reverse(),
         Paralel:req.user.group.slice(0,1)
       });
 
