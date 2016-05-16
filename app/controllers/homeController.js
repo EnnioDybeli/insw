@@ -12,7 +12,7 @@ module.exports = function (app) {
 
 router.get('/', function (req, res, next) {
       // req.logout();
-      if(req.user){
+      if(req.user && req.user.authenticated == true){
         res.redirect('/home');
       }
       res.render('homepage',{
