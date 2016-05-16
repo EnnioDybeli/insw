@@ -17,33 +17,27 @@ module.exports = function (app) {
 router.get('/home', function(req, res){
 
   if(req.user){
-
     Post.find(function(err,posts){
 
       if(err)
         res.send(err);
 
       if(req.user.admin !== true){
-
         res.render('post',{
           User:req.user,
           Paralel:req.user.group.slice(0,1)
         });
 
       } else {
-
         res.render('post',{
           User:req.user
         });
-
       }
-
     });
 
   } else {
     res.send('not authh');
   }
-
  });
 
 
@@ -52,16 +46,13 @@ router.get('/post', function(req, res){
   if(req.user){
 
     if(req.user.admin !== true){
-
       res.render('postonjoftim',{
             User:req.user,
             Paralel:req.user.group.slice(0,1) });
-
     } else {
-
       res.render('postonjoftim',{
             User:req.user });
-  }
+      }
 
   } else {
     res.send('not authh');
@@ -76,13 +67,11 @@ router.post('/post', function(req, res){
   if(req.user){
 
     var njoftim = new Post();
-
     njoftim.author = req.user.name + req.user.surname;
     njoftim.title = req.body.title;
     njoftim.feed = req.body.feed;
     njoftim.text = req.body.text;
     njoftim.service = req.body.service;
-
     if(req.user.admin == true){
       njoftim.authorType = 'profesor'
     }
@@ -93,12 +82,9 @@ router.post('/post', function(req, res){
         res.send(err);
 
       res.redirect('/home');
-
       User.find(function(err,emails){
-        // console.log('users::::'+emails)
 
         for (user in emails){
-
           sendgrid.send({
             to:        emails[user].email ,
             from:     'app49273626@heroku.com',
@@ -109,8 +95,6 @@ router.post('/post', function(req, res){
             if (err) { return console.error(err); }
             console.log(json);
           });
-
-          // console.log('emails::::'+ emails[user].email);
         }
       });
     });
@@ -130,9 +114,7 @@ router.get('/ajax/:route', function(req, res){
   if(req.user){
 
     Post.find({'feed':req.params.route},function(err,posts){
-
       res.render('njoftim',{ Posts:posts.reverse(),User:req.user });
-
     })
 
   }else{
@@ -150,9 +132,7 @@ router.get('/user-post/:author', function(req, res){
 
 
     Post.find({'author':req.params.author},function(err,posts){
-
       res.render('post',{ Posts:posts,User:req.user });
-
     })
 
   }else{

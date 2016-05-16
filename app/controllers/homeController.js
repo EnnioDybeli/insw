@@ -11,7 +11,6 @@ module.exports = function (app) {
 };
 
 router.get('/', function (req, res, next) {
-      // req.logout();
       if(req.user && req.user.authenticated == true){
         res.redirect('/home');
       }
@@ -23,20 +22,15 @@ router.get('/', function (req, res, next) {
 
 
 router.get('/register/:usertype', function(req,res){
-
   var userType = req.params.usertype;
-
   if( userType == 'student'){
-
   res.render('register',{
     showtype:'student',
     message: req.flash('error')
   });
-
   }
 
   else if( userType == 'profesor'){
-
   res.render('register',{
     showtype:'profesor'
   });
