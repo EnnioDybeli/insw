@@ -7,7 +7,7 @@ var express       = require('express'),
     passport      = require('passport'),
     flash         = require('connect-flash'),
     sendgrid      = require('sendgrid')(process.env.SENDGRID_USERNAME, process.env.SENDGRID_PASSWORD);
-;
+
 
 module.exports = function (app) {
   app.use('/', router);

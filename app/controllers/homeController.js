@@ -11,7 +11,10 @@ module.exports = function (app) {
 };
 
 router.get('/', function (req, res, next) {
-      req.logout();
+      // req.logout();
+      if(req.user){
+        res.redirect('/home');
+      }
       res.render('homepage',{
         message: req.flash('success')
       });
@@ -23,7 +26,7 @@ router.get('/register/:usertype', function(req,res){
 
   var userType = req.params.usertype;
 
-  if( userType == 'student'){ 
+  if( userType == 'student'){
 
   res.render('register',{
     showtype:'student',
@@ -32,7 +35,7 @@ router.get('/register/:usertype', function(req,res){
 
   }
 
-  else if( userType == 'profesor'){ 
+  else if( userType == 'profesor'){
 
   res.render('register',{
     showtype:'profesor'
