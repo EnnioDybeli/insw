@@ -45,13 +45,13 @@ router.get('/post', function(req, res){
 
       res.render('postonjoftim',{
             User:req.user,
-            Paralel:req.user.group.slice(0,1) }
+            Paralel:req.user.group.slice(0,1) });
 
     } else {
 
       res.render('postonjoftim',{
             User:req.user,
-            Paralel:'none' }
+            Paralel:'none' }):
   }
 
   } else {
