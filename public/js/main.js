@@ -74,4 +74,16 @@ $(function() {    // Makes sure the code contained doesn't run until
 
 });
 
+$('.paraleli_menu').on('click',function(){
+  $('.dropdown_paraleli').hide();
+  $('.dropdown_paraleli').toggleClass('show');
+
+});
+
+$('.group_menu').on('click',function(){
+  $('.dropdown_group').hide();
+  $('.dropdown_group').toggleClass('show');
+
+});
+
 
