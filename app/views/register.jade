@@ -14,7 +14,8 @@ block content
             a(href="/register/profesor" id="register")<i class="fa fa-user"></i> Regjistrohu si profesor
           else
             a(href="/register/student" id="register")<i class="fa fa-graduation-cap" aria-hidden="true"></i> Regjistrohu si student
-
+      if message
+        h1=message
       .main
         .content-header
           if showtype != 'student'
