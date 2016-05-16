@@ -1,7 +1,10 @@
 each post in Posts
   .blog-post
             .left-blog-post
-              img(src="img/rectangle.png")
+              if User.admin == true
+                img(src='/img/prof_avatar.png')
+              else
+                img(src='/img/stud_avatar.png')
               br
               a(href='/user-post/#{post.author}')=post.author
               br

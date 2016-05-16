@@ -110,7 +110,7 @@ router.get('/ajax/:route', function(req, res){
 
     Post.find({'feed':req.params.route},function(err,posts){
 
-      res.render('njoftim',{ Posts:posts.reverse() });
+      res.render('njoftim',{ Posts:posts.reverse(),User:req.user });
 
     })
 
