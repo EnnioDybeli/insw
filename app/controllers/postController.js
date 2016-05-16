@@ -50,8 +50,7 @@ router.get('/post', function(req, res){
     } else {
 
       res.render('postonjoftim',{
-            User:req.user,
-            Paralel:'none' }):
+            User:req.user });
   }
 
   } else {
