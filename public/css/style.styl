@@ -268,7 +268,7 @@ header
   background-color #f1f1f7
   height auto
   width 100%
-  overflow auto
+  // overflow auto
   header
     background-color #26262a
     .avatar
@@ -493,3 +493,71 @@ header
   margin-top: 28px
 .show
   display: block !important
+
+.dropdown_paraleli
+  display none
+  position absolute
+  left 0
+  width 180px
+  height 100px
+  top 50px
+  padding 0
+  box-shadow 0 8px 20px 0 rgba(30,33,36,0.1)
+  li
+    display inherit !important
+    text-align center
+    border-bottom 1px solid #E8E8E8
+.dropdown_group
+  display none
+  position absolute
+  left 0
+  width 180px
+  height 185px
+  top 50px
+  padding 0
+  box-shadow 0 8px 20px 0 rgba(30,33,36,0.1)
+  li
+    display inherit !important
+    text-align center
+    border-bottom 1px solid #E8E8E8
+.paraleli_menu
+  position relative
+.group_menu
+  position relative
+
+#nav-icon1
+  width: 60px;
+  height: 45px;
+  position: absolute
+  right 0
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  -o-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
+  cursor: pointer;
+
+#nav-icon1 span
+  display: block;
+  position: absolute;
+  height: 3px;
+  width: 35%;
+  background: #23c88d;
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+#nav-icon1 span:nth-child(1)
+  top: 18px;
+  -webkit-transform: rotate(135deg);
+  -moz-transform: rotate(135deg);
+  -o-transform: rotate(135deg);
+  transform: rotate(135deg);
+#nav-icon1 span:nth-child(2)
+  top: 18px;
+  -webkit-transform: rotate(-135deg);
+  -moz-transform: rotate(-135deg);
+  -o-transform: rotate(-135deg);
+  transform: rotate(-135deg);

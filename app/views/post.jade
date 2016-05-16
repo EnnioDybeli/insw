@@ -27,7 +27,24 @@ block content
 
               li( id="#{User.group}" )
                 | Grupi #{User.group}
+          else 
+            ul.menulist
+                li( class="active" id="kryesore" )
+                  | Pergjithshme
 
+                li(class="selectFilter paraleli_menu" style="position:relative" ) Paraleli 
+                  i(class="fa fa-sort-desc" aria-hidden="true")
+                  ul.dropdown_paraleli
+                    li A
+                    li B
+
+                li( class="selectFilter group_menu"  style="position:relative" ) Grupi #{User.group} 
+                  i(class="fa fa-sort-desc" aria-hidden="true")
+                  ul.dropdown_group
+                    li A1
+                    li A2
+                    li B1
+                    li B2              
 
           a(href='/post') + Posto nje njoftim
 

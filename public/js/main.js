@@ -50,6 +50,22 @@ $('.menulist > li').click(function(){
 
 
 
+
+
+$('.selectFilter').on('mouseenter',function(){
+
+  $(this).children(1).addClass('show');
+
+});
+
+$('.selectFilter').on('mouseleave',function(){
+
+  $(this).children(1).removeClass('show');
+
+});
+
+
+
 $(window).scroll(function () {
 
    if ($(this).scrollTop() >= 100) {
