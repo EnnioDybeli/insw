@@ -41,10 +41,8 @@ router.get('/register/:usertype', function(req,res){
     showtype:'profesor'
   });
 
-  }
-
-  else{
-  res.render('error');
+  } else {
+    res.render('error');
   }
 
 });

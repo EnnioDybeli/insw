@@ -16,16 +16,17 @@ block content
               | logout
       .blog
         .menu
-          ul.menulist
+          if User.admin !== true
+            ul.menulist
 
-            li( class="active" id="kryesore" )
-              | Pergjithshme
+              li( class="active" id="kryesore" )
+                | Pergjithshme
 
-            li( id="#{Paralel}" )
-              | Paraleli 
+              li( id="#{Paralel}" )
+                | Paraleli 
 
-            li( id="#{User.group}" )
-              | Grupi #{User.group}
+              li( id="#{User.group}" )
+                | Grupi #{User.group}
 
 
           a(href='/post') + Posto nje njoftim

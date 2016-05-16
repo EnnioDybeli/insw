@@ -28,6 +28,11 @@ var PostSchema = new Schema({
 
 	feed:{
 		type:'String'
+	},
+
+	authorType:{
+		type:'String',
+		default:'student'
 	}
 
 });

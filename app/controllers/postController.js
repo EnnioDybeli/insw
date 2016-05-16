@@ -19,17 +19,28 @@ router.get('/home', function(req, res){
   if(req.user){
 
     Post.find(function(err,posts){
+
       if(err)
         res.send(err);
 
-      res.render('post',{
-        User:req.user,
-        Paralel:req.user.group.slice(0,1)
-      });
+      if(req.user.admin !== true){
 
-    })
-  }
-  else{
+        res.render('post',{
+          User:req.user,
+          Paralel:req.user.group.slice(0,1)
+        });
+
+      } else {
+
+        res.render('post',{
+          User:req.user
+        });
+
+      }
+
+    });
+
+  } else {
     res.send('not authh');
   }
 
@@ -64,7 +75,6 @@ router.post('/post', function(req, res){
 
   if(req.user){
 
-
     var njoftim = new Post();
 
     njoftim.author = req.user.name + req.user.surname;
@@ -73,7 +83,12 @@ router.post('/post', function(req, res){
     njoftim.text = req.body.text;
     njoftim.service = req.body.service;
 
+    if(req.user.admin == true){
+      njoftim.authorType = 'profesor'
+    }
+
     njoftim.save(function(err){
+
       if(err)
         res.send(err);
 

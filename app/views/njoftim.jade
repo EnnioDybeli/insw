@@ -1,7 +1,7 @@
 each post in Posts
   .blog-post
             .left-blog-post
-              if User.admin == true
+              if post.authorType == 'profesor'
                 img(src='/img/prof_avatar.png')
               else
                 img(src='/img/stud_avatar.png')

@@ -9,6 +9,11 @@ var express       = require('express'),
     randtoken     = require('rand-token');
 
 
+module.exports = function (app) {
+  app.use('/', router);
+};
+
+
 var fshnEmail = function(email){
 
   var studentRe = /\w+\.\w+@fshnstudent\.info/;
@@ -30,24 +35,15 @@ var fshnEmail = function(email){
 
 
 
+passport.serializeUser(function(user, done) {
+      done(null, user.id);
+});
 
-
-
-
-module.exports = function (app) {
-  app.use('/', router);
-};
-
-
-    passport.serializeUser(function(user, done) {
-        done(null, user.id);
+passport.deserializeUser(function(id, done) {
+    User.findById(id, function(err, user) {
+      done(err, user);
     });
-
-    passport.deserializeUser(function(id, done) {
-        User.findById(id, function(err, user) {
-            done(err, user);
-        });
-    });
+});
 
 
 
