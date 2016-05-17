@@ -11,17 +11,27 @@ block content
           span Nuk je #{showtype}?
 
           if showtype == 'student'
-            a(href="/register/profesor" id="register")<i class="fa fa-user"></i> Regjistrohu si profesor
+            a(href="/register/profesor" id="register")
+              i(class="fa fa-user")
+              | Regjistrohu si profesor
+
           else
-            a(href="/register/student" id="register")<i class="fa fa-graduation-cap" aria-hidden="true"></i> Regjistrohu si student
-      if message
-        h1=message
+            a(href="/register/student" id="register")
+              i(class="fa fa-graduation-cap" aria-hidden="true") 
+              | Regjistrohu si student
+
+      p.flash
+      | #{message}
       .main
         .content-header
           if showtype != 'student'
-            a(href="/register/profesor" id="register")<i class="fa fa-user"></i> Regjistrohu si profesor
+            a(href="/register/profesor" id="register")
+              i(class="fa fa-user")
+              | Regjistrohu si profesor
           else
-            a(href="/register/student" id="register")<i class="fa fa-graduation-cap" aria-hidden="true"></i> Regjistrohu si student
+            a(href="/register/student" id="register")
+              i(class="fa fa-graduation-cap" aria-hidden="true")
+              | Regjistrohu si student
         .content
             form(action="/student/create" method="post")
                 .person

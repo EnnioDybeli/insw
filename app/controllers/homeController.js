@@ -17,24 +17,22 @@ router.get('/', function (req, res, next) {
         res.redirect('/home');
     }
     res.render('homepage', {
-        message: req.flash('success')
+        message: req.flash('error')
     });
 });
 
 
 router.get('/register/:usertype', function (req, res) {
     var userType = req.params.usertype;
-    if (userType === 'student') {
+    if (userType == 'student') {
         res.render('register', {
             showtype: 'student',
-            message: req.flash('error')
-        });
-    }
-    if (userType === 'profesor') {
-        res.render('register', {
-            showtype: 'profesor'
+            message: req.flash('registerError')
         });
     } else {
-        res.render('error');
+        res.render('register', {
+            showtype: 'profesor',
+            message: req.flash('registerError')
+        });
     }
 });

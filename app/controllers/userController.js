@@ -38,6 +38,7 @@ router.get('/email-verification/:token', function (req, res) {
             if (err) {
                 console.log(err);
             }
+            req.flash('error','your account was verified, please log in')
             res.redirect('/');
         });
     });

@@ -55,14 +55,12 @@ passport.use('login', new LocalStrategy({
                 }
                 if (!user) {
                     console.log('User Not Found with username ' + email);
-                    return done(null, false,
-                          { message: 'Invalid email' });
+                    return done(null, false, req.flash('error','Invalid Email'));
                 }
                 if (!user.validPassword(password) || user.authenticated === false) {
 
                     console.log('Invalid Password or not activated');
-                    return done(null, false,
-                        { message: 'Invalid Password or not activated' });
+                    return done(null, false,req.flash('error','Invalid password or not profile authenticated'));
                 }
                 return done(null, user);
             });
@@ -115,11 +113,10 @@ passport.use('register', new LocalStrategy({
                             }
                             console.log(json);
                         });
-                        return done(null, student, {message: 'Open Email to verify account'});
+                        return done(null, student, req.flash('error','Check email and click on the link to verify account, then login'));
                     });
                 } else {
-                    return done(null, false,
-                        {message: 'Passwords dont match'});
+                    return done(null, false, req.flash('registerError','Please make sure your passwords match'));
                 }
             });
         };
