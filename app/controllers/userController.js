@@ -11,36 +11,42 @@ module.exports = function (app) {
   app.use('/', router);
 };
 
- router.post('/student/create', passport.authenticate('register', {
+//sign-up
+router.post('/student/create', passport.authenticate('register', {
     successRedirect: '/',
     failureRedirect: '/register/student',
     failureFlash : true
-  }));
+}));
 
- router.post('/login',passport.authenticate('login',{
+//sign-in
+router.post('/login', passport.authenticate('login', {
     successRedirect: '/home',
     failureRedirect: '/',
     failureFlash : true
-  }));
+}));
 
-router.get('/email-verification/:token', function(req, res){
-
-  User.findOne({'verificationToken':req.params.token},function(err,user){
-    if(err)
-      res.send(err);
-    user.authenticated = true;
-    user.save(function(err){
-      if(err)
-        console.log(err);
-      res.redirect('/');
+//verify-user-by-link
+router.get('/email-verification/:token', function (req, res) {
+    //check for token in database
+    User.findOne({'verificationToken': req.params.token}, function (err, user) {
+        if (err) {
+            res.send(err);
+        }
+        //authenticate
+        user.authenticated = true;
+        user.save(function (err) {
+            if (err) {
+                console.log(err);
+            }
+            res.redirect('/');
+        });
     });
- });
 });
 
-
-router.get('/logout', function(req, res){
-  req.logout();
-  res.redirect('/')
+//logut
+router.get('/logout', function (req, res) {
+    req.logout();
+    res.redirect('/');
 });
 
 
