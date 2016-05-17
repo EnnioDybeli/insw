@@ -65,17 +65,18 @@ router.get('/post', function (req, res) {
 //get-post
 router.post('/post', function (req, res) {
     if (req.user) {
-          //create post
+        //create post
         var njoftim     = new Post();
         njoftim.author  = req.user.name + req.user.surname;
         njoftim.title   = req.body.title;
         njoftim.feed    = req.body.feed;
         njoftim.text    = req.body.text;
         njoftim.service = req.body.service;
+        //set professor type
         if (req.user.admin === true) {
             njoftim.authorType = 'profesor';
         }
-          // save on db
+        // save on db
         njoftim.save(function (err) {
             if (err) {
                 res.send(err);
@@ -83,7 +84,7 @@ router.post('/post', function (req, res) {
             res.redirect('/home');
             User.find(function (err, emails) {
                 var user = 0;
-                  //send email to each user
+                //send email to each user
                 for (user in emails) {
                       sendgrid.send({
                         to:        emails[user].email ,
@@ -97,7 +98,7 @@ router.post('/post', function (req, res) {
                               console.log(json);
                          });
                 } //end loop
-              });// close db
+              });//close db
         });//save post
 
     // if not authenticated
