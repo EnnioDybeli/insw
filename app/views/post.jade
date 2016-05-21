@@ -36,9 +36,18 @@ block content
           a(href='/post') + Posto nje njoftim
 
         .posts-container
-          div#nav-icon1
-            span
-            span
+          div#myBtn
+            div#nav-icon1
+              span
+              span
+
+      .modal(id='myModal')
+        .modal-content
+          span.close x
+          p Je i sigurt qe do ta fshish postimin?
+          input(type='submit' class='po' value='Po')
+          input(type='submit' class='jo' value='Jo')
+
         //- each post in Posts
         //-   .blog-post
         //-     .left-blog-post
