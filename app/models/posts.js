@@ -30,6 +30,14 @@ var PostSchema = new Schema({
 		type:'String'
 	},
 
+	grupi:{
+		type:'String'
+	},
+
+	viti:{
+		type:'String'
+	},
+
 	authorType:{
 		type:'String',
 		default:'student'

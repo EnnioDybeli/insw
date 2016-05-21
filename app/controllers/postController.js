@@ -44,18 +44,21 @@ router.get('/home', function (req, res) {
 //render-posting-form
 router.get('/post', function (req, res) {
   if (req.user) {
+
         //professor's form
         if (req.user.admin !== true) {
             res.render('postonjoftim', {
                 User: req.user,
                 Paralel: req.user.group.slice(0, 1)
             });
+
         //student's form
         } else {
             res.render('postonjoftim', {
                 User: req.user
             });
         }
+
     } else {
         res.send('not authorized');
     }
@@ -72,6 +75,8 @@ router.post('/post', function (req, res) {
         njoftim.feed    = req.body.feed;
         njoftim.text    = req.body.text;
         njoftim.service = req.body.service;
+        njoftim.grupi   = req.user.group;
+        njoftim.viti    = req.user.year;
         //set professor type
         if (req.user.admin === true) {
             njoftim.authorType = 'profesor';
@@ -82,23 +87,26 @@ router.post('/post', function (req, res) {
                 res.send(err);
             }
             res.redirect('/home');
-            User.find(function (err, emails) {
-                var user = 0;
-                //send email to each user
-                for (user in emails) {
-                      sendgrid.send({
-                        to:        emails[user].email ,
-                        from:     'app49273626@heroku.com',
-                        subject:  'New post on Fshn',
-                        text:     'Postim i ri nga' + njoftim.author + ':' + njoftim.text
-                      }, function (err, json) {
-                              if (err) {
-                                return console.error(err);
-                              }
-                              console.log(json);
-                         });
-                } //end loop
-              });//close db
+
+            if (req.body.service === 'email' || req.body.service === 'both') {
+                User.find(function (err, emails) {
+                    var user = 0;
+                    //send email to each user
+                    for (user in emails) {
+                          sendgrid.send({
+                            to:        emails[user].email ,
+                            from:     'app49273626@heroku.com',
+                            subject:  'New post on Fshn',
+                            text:     'Postim i ri nga' + njoftim.author + ':' + njoftim.text
+                          }, function (err, json) {
+                                  if (err) {
+                                    return console.error(err);
+                                  }
+                                  console.log(json);
+                             });
+                    } //end loop
+                  });//close db
+            }
         });//save post
 
     // if not authenticated
@@ -114,6 +122,20 @@ router.get('/ajax/:route', function (req, res) {
         Post.find({'feed': req.params.route}, function (err, posts) {
             res.render('njoftim', {Posts: posts.reverse(), User: req.user});
         });
+    } else {
+        res.redirect('/');
+    }
+});
+
+
+//ajax-feed-profesor
+router.get('/ajax-filter/:viti/:grupi', function (req, res) {
+    if (req.user) {
+        Post.find({'viti': req.params.viti,
+                   'grupi': req.params.grupi },
+          function (err, posts) {
+              res.render('njoftim', {Posts: posts.reverse(), User: req.user});
+          });
     } else {
         res.redirect('/');
     }

@@ -30,21 +30,18 @@ block content
           else 
             ul.droplist
                 li( class="active" id="kryesore" )
-                  | Pergjithshme
+                  | Kryesore
+                span.divider
+                select(name='filter_viti' id="filter_viti" class="feed-filter" style="margin-left:50px")
+                  option(value="1")="Viti 1"
+                  option(value="2")="Viti 2"
+                  option(value="3")="Viti 3"
 
-                li(class="selectFilter paraleli_menu" style="position:relative" ) Paraleli 
-                  i(class="fa fa-sort-desc" aria-hidden="true")
-                  ul.dropdown_paraleli
-                    li A
-                    li B
-
-                li( class="selectFilter group_menu"  style="position:relative" ) Grupi #{User.group} 
-                  i(class="fa fa-sort-desc" aria-hidden="true")
-                  ul.dropdown_group
-                    li A1
-                    li A2
-                    li B1
-                    li B2              
+                select(name='filter_grupi' id="filter_grupi" class="feed-filter")
+                  option(value="a1")="A1"
+                  option(value="a2")="A2"
+                  option(value="b1")="B1"
+                  option(value="b2")="B2"             
 
           a(href='/post') + Posto nje njoftim
 
