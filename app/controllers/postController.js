@@ -96,7 +96,7 @@ router.post('/post', function (req, res) {
             if (req.body.viti === 'all') {
               njoftim.feed = 'kryesore';
             } else if (req.body.grupi === 'all') {
-              njoftim.feed = req.body.grupi.slice(0,1);
+              njoftim.feed = req.body.grupi.slice(0,1).toUpeerCase();
             } else {
               njoftim.feed = req.body.grupi;
             }
