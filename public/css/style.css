@@ -132,7 +132,7 @@ header .form ::-webkit-input-placeholder {
 .hero .buttona {
   position: relative;
   text-align: center;
-  top: 30%;
+  margin-top: 20vh;
   z-index: 999;
 }
 .hero .buttona #student {
@@ -504,7 +504,8 @@ header .register a:hover {
   margin-bottom: 50px;
   padding-right: 50px;
 }
-.blog .blog-form .posto-tek #viti {
+.blog .blog-form .posto-tek #viti,
+.blog .blog-form .posto-tek #grupi {
   width: 100%;
   height: 30px;
   border-radius: 5px;
@@ -528,6 +529,8 @@ header .register a:hover {
 .blog .blog-footer {
   height: 100px;
   text-align: center;
+  position: absolute;
+  bottom: 0;
 }
 .blog .blog-footer input {
   margin-top: 3%;
