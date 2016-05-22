@@ -1,5 +1,8 @@
 each post in Posts
-  .blog-post
+  div(class="blog-post" id="#{post._id}")
+            if(User.admin == true)
+              .delete-button
+                p="delete"
             .left-blog-post
               if post.authorType == 'profesor'
                 img(src='/img/prof_avatar.png')

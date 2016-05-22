@@ -36,7 +36,7 @@ router.get('/home', function (req, res) {
             }
         });
     } else {
-        res.send('not authorized');
+        res.redirect('/');
     }
 });
 
@@ -70,16 +70,37 @@ router.post('/post', function (req, res) {
     if (req.user) {
         //create post
         var njoftim     = new Post();
-        njoftim.author  = req.user.name + req.user.surname;
-        njoftim.title   = req.body.title;
-        njoftim.feed    = req.body.feed;
-        njoftim.text    = req.body.text;
-        njoftim.service = req.body.service;
-        njoftim.grupi   = req.user.group;
-        njoftim.viti    = req.user.year;
-        //set professor type
+
+        //set student post
+        if (req.user.admin !== true){
+          njoftim.author  = req.user.name + req.user.surname;
+          njoftim.title   = req.body.title;
+          njoftim.feed    = req.body.feed;
+          njoftim.text    = req.body.text;
+          njoftim.service = req.body.service;
+          njoftim.grupi   = req.user.group;
+          njoftim.viti    = req.user.year;
+        }
+
+        //set professor post
         if (req.user.admin === true) {
+
             njoftim.authorType = 'profesor';
+            njoftim.author     = req.user.name + req.user.surname;
+            njoftim.title      = req.body.title;
+            njoftim.text       = req.body.text;
+            njoftim.service    = req.body.service;
+            njoftim.grupi      = req.body.grupi;
+            njoftim.viti       = req.body.viti;
+
+            if (req.body.viti === 'all') {
+              njoftim.feed = 'kryesore';
+            } else if (req.body.grupi === 'all') {
+              njoftim.feed = req.body.grupi.slice(0,1);
+            } else {
+              njoftim.feed = req.body.grupi;
+            }
+
         }
         // save on db
         njoftim.save(function (err) {
@@ -116,6 +137,10 @@ router.post('/post', function (req, res) {
 });
 
 
+
+
+// AJAX API //
+
 //ajax-feeds
 router.get('/ajax/:route', function (req, res) {
     if (req.user) {
@@ -123,7 +148,7 @@ router.get('/ajax/:route', function (req, res) {
             res.render('njoftim', {Posts: posts.reverse(), User: req.user});
         });
     } else {
-        res.redirect('/');
+        res.send('not authorized!');
     }
 });
 
@@ -132,12 +157,13 @@ router.get('/ajax/:route', function (req, res) {
 router.get('/ajax-filter/:viti/:grupi', function (req, res) {
     if (req.user) {
         Post.find({'viti': req.params.viti,
-                   'grupi': req.params.grupi },
+                   'grupi': req.params.grupi.toUpperCase() },
           function (err, posts) {
               res.render('njoftim', {Posts: posts.reverse(), User: req.user});
           });
+
     } else {
-        res.redirect('/');
+        res.send('not authorized!');
     }
 });
 
@@ -149,6 +175,21 @@ router.get('/user-post/:author', function (req, res) {
             res.render('post', { Posts: posts, User: req.user});
         });
     } else {
-        res.redirect('/');
+        res.send('not authorized!');
+    }
+});
+
+
+router.get('/ajax/delete/:id', function (req, res) {
+    if (req.user) {
+        Post.remove({'_id': req.params.id}, function (err) {
+          if (err) {
+            res.send('error - could not find and delete post');
+          } else {
+            res.send('done');
+          }
+        });
+    } else {
+        res.send('not authorized!');
     }
 });

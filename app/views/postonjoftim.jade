@@ -26,11 +26,25 @@ block content
                 br
                 .posto-tek
                   p Posto tek: 
-                  select(list="viti_shkollor" name="feed" id="viti")
-                    option(value='kryesore')="Kryesore"
-                    if User.admin == false
-                      option(value='#{Paralel}')="Paraleli"
-                    option(value='#{User.group}')="Grupi"
+                  if User.admin == true
+                    select(list="viti" name="viti" id="viti")
+                      option(value="all")="Te gjitha vitet"
+                      option(value="1")="viti 1"
+                      option(value="2")="viti 2"
+                      option(value="3")="viti 3"
+                    select(list="grupi" name="grupi" id="grupi")
+                      option(value="all")="Te gjitha grupet"
+                      option(value="A1")="A1"
+                      option(value="A2")="A2"
+                      option(value="B1")="B1"
+                      option(value="B2")="B2"
+                  else 
+                    select(list="viti" name="feed" id="viti")
+                      option(value="kryesore")="Kryesore"
+                      option(value="#{Paralel}")
+                        | Paraleli #{Paralel}
+                      option(value="#{User.group}")
+                        | Grupi #{User.group}
                 .njofto-permes
                   p Njofto permes:
                   select(list="njoftimi" name="service" placeholder='Njofto' id="njofto")
@@ -38,8 +52,8 @@ block content
                     option(value='EMAIL')="Email"
                     option(value='SMS')="SMS"
                 .upload
-                  p Upload:
-                      input(id="file-upload" type="file")
+                  //- p Upload:
+                  //-     input(id="file-upload" type="file")
                 .blog-footer
                   input(type='submit' id='posto')
                   a(href="/home" id='anullo') Anullo

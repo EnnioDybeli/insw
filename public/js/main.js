@@ -1,17 +1,23 @@
-//initial feed call
-$.get('/ajax/kryesore', function (data) {
-    "use strict";
-    if (data) {
-        $('.posts-container').append(data);
-    } else {
-        console.log('no data recieved');
-    }
-});
-
 //logout dropdown
 $('.avatar').on('click', function () {
   $('.logout').toggleClass('show');
 });
+
+
+//initialize feed
+var getKryesore = function () {
+    $.get('/ajax/kryesore', function (data) {
+        "use strict";
+        if (data) {
+            $('.posts-container').append(data);
+            getDelete();
+        } else {
+            console.log('no data recieved');
+        }
+    });
+};
+getKryesore();
+
 
 //ajax filter tabs
 $('.menulist > li').click(function () {
@@ -21,6 +27,7 @@ $('.menulist > li').click(function () {
             if (data) {
                 $('.posts-container').empty();
                 $('.posts-container').append(data);
+                getDelete();
             } else {
                 console.log('no data recieved');
                 $('.posts-container').empty();
@@ -30,10 +37,12 @@ $('.menulist > li').click(function () {
       $(this).addClass('active');
 });
 
-//dropdown tabs
-$('.selectFilter').on('click', function () {
-    $(this).children(1).toggleClass('show');
-});
+
+// //dropdown tabs
+// $('.selectFilter').on('click', function () {
+//     $(this).children(1).toggleClass('show');
+// });
+
 
 //stick to top on 100px scroll
 $(window).scroll(function () {
@@ -49,15 +58,22 @@ $(window).scroll(function () {
 });
 
 
+$('#kryesore').on('click',function () {
+  $('.posts-container').empty();
+  getKryesore();
+  getDelete();
+});
+
+
 $('.feed-filter').change(function () {
   $('.posts-container').empty();
   var viti  = $('.feed-filter')[0].value,
       grupi = $('.feed-filter')[1].value;
-
   $.get('/ajax-filter/' + viti + '/' + grupi, function (data) {
       if (data) {
           $('.posts-container').empty();
           $('.posts-container').append(data);
+          getDelete();
       } else {
           console.log('no data recieved');
           $('.posts-container').empty();
@@ -65,3 +81,24 @@ $('.feed-filter').change(function () {
       }
   });
 });
+
+
+var getDelete = function () {
+
+  $('.delete-button').click(function (event) {
+    $('.modal').addClass('show');
+    var postId = $(this).parent('div').attr('id')
+
+    $('.jo').click(function () {
+        $('.modal').removeClass('show');
+    });
+
+    $('.po').click(function () {
+        $('.modal').removeClass('show');
+        $.get('/ajax/delete/' + postId, function (data) {
+          console.log(data);
+          location.reload();
+        });
+    });
+  });
+}
