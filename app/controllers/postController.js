@@ -156,16 +156,30 @@ router.get('/ajax/:route', function (req, res) {
 //ajax-feed-profesor
 router.get('/ajax-filter/:viti/:grupi', function (req, res) {
     if (req.user) {
-        Post.find({'viti': req.params.viti,
-                   'grupi': req.params.grupi.toUpperCase() },
-          function (err, posts) {
-              res.render('njoftim', {Posts: posts.reverse(), User: req.user});
-          });
-
+        if (req.params.viti === 'all') {
+          Post.find({'grupi': req.params.grupi.toUpperCase()},
+            function (err, posts) {
+                res.render('njoftim', {Posts: posts.reverse(), User: req.user});
+            });
+        }
+        if (req.params.grupi === 'all') {
+          Post.find({'viti': req.params.viti},
+            function (err, posts) {
+                res.render('njoftim', {Posts: posts.reverse(), User: req.user});
+            });
+        } else {
+          Post.find({'viti': req.params.viti,
+                     'grupi': req.params.grupi.toUpperCase() },
+            function (err, posts) {
+                res.render('njoftim', {Posts: posts.reverse(), User: req.user});
+            });
+        }
     } else {
         res.send('not authorized!');
     }
 });
+
+
 
 
 //ajax-posts-from-user

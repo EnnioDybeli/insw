@@ -86,6 +86,7 @@ $('.feed-filter').change(function () {
 var getDelete = function () {
 
   $('.delete-button').click(function (event) {
+    console.log('deletexx')
     $('.modal').addClass('show');
     var postId = $(this).parent('div').attr('id')
 

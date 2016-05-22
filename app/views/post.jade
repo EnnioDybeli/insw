@@ -33,25 +33,26 @@ block content
                   | Kryesore
                 span.divider
                 select(name='filter_viti' id="filter_viti" class="feed-filter" style="margin-left:50px")
+                  option(value="all")="*Vitet"
                   option(value="1")="Viti 1"
                   option(value="2")="Viti 2"
                   option(value="3")="Viti 3"
 
                 select(name='filter_grupi' id="filter_grupi" class="feed-filter")
+                  option(value="all")="*Grupet"
                   option(value="a1")="A1"
                   option(value="a2")="A2"
                   option(value="b1")="B1"
                   option(value="b2")="B2"             
 
           a(href='/post') + Posto nje njoftim
-          
-        .posts-container
-          .modal
-            .modal-content
+        .modal
+          .modal-content
               //- span.closemodal="x"
               p Je i sigurt qe do ta fshish postimin?
               input(type='submit' class='po' value='Po')
-              input(type='submit' class='jo' value='Jo')        
+              input(type='submit' class='jo' value='Jo')     
+        .posts-container       
           //- posts go in here
 
     script(src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous")
