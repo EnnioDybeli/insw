@@ -53,29 +53,3 @@ router.get('/logout', function (req, res) {
     req.logout();
     res.redirect('/');
 });
-
-
-
-// DEMO ONLY /////////////////////////////////////
-
-
-// router.get('/list', function(req, res){
-//
-//   User.find(function(err,users){
-//     if(err)
-//       res.send(err);
-//     res.send(users);
-//  });
-//
-// });
-//
-//
-// router.get('/postlist', function(req, res){
-//
-//   Post.find(function(err,posts){
-//     if(err)
-//       res.send(err);
-//     res.send(posts);
-//  });
-//
-// });

@@ -113,10 +113,10 @@ passport.use('register', new LocalStrategy({
                             }
                             console.log(json);
                         });
-                        return done(null, student, req.flash('error','Check email and click on the link to verify account, then login'));
+                        return done(null, student, req.flash('error','Kontrollo '+student.email+" per te verifikuar llogarine"));
                     });
                 } else {
-                    return done(null, false, req.flash('registerError','Please make sure your passwords match'));
+                    return done(null, false, req.flash('registerError','Passorded duhet te jene te njejte'));
                 }
             });
         };
