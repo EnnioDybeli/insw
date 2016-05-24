@@ -100,7 +100,7 @@ passport.use('register', new LocalStrategy({
                         if (err) {
                             res.send(err);
                         }
-                        var activationURL = 'Kliko ne linkun e meposhtem dhe logohuni per tu verifikuar si user i meteor <br>  http://insw.herokuapp.com/email-verification/' + student.verificationToken,
+                        var activationURL = 'Kliko ne linkun e meposhtem dhe logohuni per tu verifikuar si user i meteor:  http://insw.herokuapp.com/email-verification/' + student.verificationToken,
                             sendgrid  = require('sendgrid')(process.env.SENDGRID_USERNAME, process.env.SENDGRID_PASSWORD);
                         sendgrid.send({
                             to:        student.email,
