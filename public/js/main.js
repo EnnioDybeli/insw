@@ -9,6 +9,7 @@ var getKryesore = function () {
     $.get('/ajax/kryesore', function (data) {
         "use strict";
         if (data) {
+            $('.posts-container').empty();
             $('.posts-container').append(data);
             getDelete();
         } else {

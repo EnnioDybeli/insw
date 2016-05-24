@@ -8,7 +8,8 @@ var express        = require('express'),
     methodOverride = require('method-override'),
     passport       = require('passport'),
     expressSession = require('express-session'),
-    flash          = require('express-flash');
+    flash          = require('express-flash')
+    request        = require('request');
 
 
 

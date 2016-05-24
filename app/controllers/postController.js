@@ -6,7 +6,8 @@ var express       = require('express'),
     LocalStrategy = require('passport-local').Strategy,
     passport      = require('passport'),
     flash         = require('connect-flash'),
-    sendgrid      = require('sendgrid')(process.env.SENDGRID_USERNAME, process.env.SENDGRID_PASSWORD);
+    sendgrid      = require('sendgrid')(process.env.SENDGRID_USERNAME, process.env.SENDGRID_PASSWORD),
+    request       = require('request');
 
 
 module.exports = function (app) {
@@ -73,18 +74,17 @@ router.post('/post', function (req, res) {
 
         //set student post
         if (req.user.admin !== true){
-          njoftim.author  = req.user.name + req.user.surname;
-          njoftim.title   = req.body.title;
-          njoftim.feed    = req.body.feed;
-          njoftim.text    = req.body.text;
-          njoftim.service = req.body.service;
-          njoftim.grupi   = req.user.group;
-          njoftim.viti    = req.user.year;
+            njoftim.author  = req.user.name + req.user.surname;
+            njoftim.title   = req.body.title;
+            njoftim.feed    = req.body.feed;
+            njoftim.text    = req.body.text;
+            njoftim.service = req.body.service;
+            njoftim.grupi   = req.user.group;
+            njoftim.viti    = req.user.year;
         }
 
         //set professor post
         if (req.user.admin === true) {
-
             njoftim.authorType = 'profesor';
             njoftim.author     = req.user.name + req.user.surname;
             njoftim.title      = req.body.title;
@@ -96,12 +96,12 @@ router.post('/post', function (req, res) {
             if (req.body.viti === 'all') {
               njoftim.feed = 'kryesore';
             } else if (req.body.grupi === 'all') {
-              njoftim.feed = req.body.grupi.slice(0,1).toUpeerCase();
+              njoftim.feed = req.body.grupi.slice(0,1).toUpperCase();
             } else {
               njoftim.feed = req.body.grupi;
             }
-
         }
+
         // save on db
         njoftim.save(function (err) {
             if (err) {
@@ -109,6 +109,7 @@ router.post('/post', function (req, res) {
             }
             res.redirect('/home');
 
+            // SEND EMAIL
             if (req.body.service === 'email' || req.body.service === 'both') {
                 User.find(function (err, emails) {
                     var user = 0;
@@ -128,7 +129,34 @@ router.post('/post', function (req, res) {
                     } //end loop
                   });//close db
             }
-        });//save post
+
+            // SEND SMS
+            if (req.body.service === 'sms' || req.body.service === 'both') {
+              var reqHeaders = {
+                "Host": "api.infobip.com",
+                "Authorization": "Basic ZW5uaW81OmFuZHlncmFtbQ==",
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+              }
+              var messageString = "MeteorCMS - " + njoftim.author + "sapo postoi nje njofi"
+              User.find(function (err, numbers) {
+                  var user = 0;
+                  //send email to each user
+                  for (user in numbers) {
+                    request.post({
+                      headers:reqHeaders,
+                      url:'https://api.infobip.com/sms/1/text/single',
+                      body:{
+                        "from": "InfoSMS",
+                        "to": numbers[user].number,
+                        "text": messageString
+                      }
+                    });//end request
+                  } //end loop
+                });//close db-connection
+            }  //end sms-sending
+
+        });//save post //////////////////////////
 
     // if not authenticated
     } else {
@@ -137,10 +165,7 @@ router.post('/post', function (req, res) {
 });
 
 
-
-
 // AJAX API //
-
 //ajax-feeds
 router.get('/ajax/:route', function (req, res) {
     if (req.user) {
@@ -178,8 +203,6 @@ router.get('/ajax-filter/:viti/:grupi', function (req, res) {
         res.send('not authorized!');
     }
 });
-
-
 
 
 //ajax-posts-from-user

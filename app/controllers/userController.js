@@ -7,9 +7,11 @@ var express       = require('express'),
     passport      = require('passport'),
     flash         = require('connect-flash');
 
+
 module.exports = function (app) {
   app.use('/', router);
 };
+
 
 //sign-up
 router.post('/student/create', passport.authenticate('register', {
@@ -18,12 +20,14 @@ router.post('/student/create', passport.authenticate('register', {
     failureFlash : true
 }));
 
+
 //sign-in
 router.post('/login', passport.authenticate('login', {
     successRedirect: '/home',
     failureRedirect: '/',
     failureFlash : true
 }));
+
 
 //verify-user-by-link
 router.get('/email-verification/:token', function (req, res) {
