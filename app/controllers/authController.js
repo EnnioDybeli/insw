@@ -16,10 +16,8 @@ module.exports = function (app) {
 
 //regex email validation
 var fshnEmail = function (email) {
-
         var studentRe = /\w+\.\w+@fshnstudent\.info/,
             profesorRe = /\w+\.\w+@fshn\.edu\.al/;
-
         if (studentRe.exec(email)) {
             return 'student';
         }

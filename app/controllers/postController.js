@@ -110,13 +110,13 @@ router.post('/post', function (req, res) {
             res.redirect('/home');
 
             // SEND EMAIL
-            if (req.body.service === 'email' || req.body.service === 'both') {
+            if (req.body.service === 'EMAIL' || req.body.service === 'BOTH') {
                 User.find(function (err, emails) {
                     var user = 0;
                     //send email to each user
                     for (user in emails) {
                           sendgrid.send({
-                            to:        emails[user].email ,
+                            to:        emails[user].email,
                             from:     'app49273626@heroku.com',
                             subject:  'New post on Fshn',
                             text:     'Postim i ri nga' + njoftim.author + ':' + njoftim.text
@@ -131,30 +131,41 @@ router.post('/post', function (req, res) {
             }
 
             // SEND SMS
-            if (req.body.service === 'sms' || req.body.service === 'both') {
+            if (req.body.service === 'SMS' || req.body.service === 'BOTH') {
               var reqHeaders = {
-                "Host": "api.infobip.com",
                 "Authorization": "Basic ZW5uaW81OmFuZHlncmFtbQ==",
-                "Content-Type": "application/json",
-                "Accept": "application/json"
+                "Content-Type":  "application/json",
               }
-              var messageString = "MeteorCMS - " + njoftim.author + "sapo postoi nje njofi"
+              // var messageString =
               User.find(function (err, numbers) {
                   var user = 0;
                   //send email to each user
                   for (user in numbers) {
-                    request.post({
-                      headers:reqHeaders,
-                      url:'https://api.infobip.com/sms/1/text/single',
-                      body:{
-                        "from": "InfoSMS",
-                        "to": numbers[user].number,
-                        "text": messageString
-                      }
-                    });//end request
+
+                    var options = { method: 'POST',
+                      url: 'https://api.infobip.com/sms/1/text/single',
+                      headers:
+                       { accept: 'application/json',
+                         'content-type': 'application/json',
+                         authorization: 'Basic ZW5uaW81OmFuZHlncmFtbQ==',
+                         host: 'api.infobip.com' },
+                      body:
+                       { from: 'InfoSMS',
+                         to:   '355696471423',
+                         text: 'MeteorCMS - ' + njoftim.author +' sapo postoi nje njofim' + njoftim.title.slice(0,25) + '... [lexo njoftimin e plote ne MeteorCMS]' },
+                      json: true };
+
+                    request(options, function (error, response, body) {
+                        if (error) {
+                          console.log(error);
+                        }
+
+                        console.log(body);
+                      });
+
                   } //end loop
-                });//close db-connection
-            }  //end sms-sending
+                }); //close db-connection
+            } //end sms-sending
 
         });//save post //////////////////////////
 
