@@ -143,25 +143,43 @@ router.post('/post', function (req, res) {
                   for (user in numbers) {
 
                     var options = { method: 'POST',
-                      url: 'https://api.infobip.com/sms/1/text/single',
-                      headers:
-                       { accept: 'application/json',
-                         'content-type': 'application/json',
-                         authorization: 'Basic ZW5uaW81OmFuZHlncmFtbQ==',
-                         host: 'api.infobip.com' },
-                      body:
-                       { from: 'InfoSMS',
-                         to:   '355696471423',
-                         text: 'MeteorCMS - ' + njoftim.author +' sapo postoi nje njofim' + njoftim.title.slice(0,25) + '... [lexo njoftimin e plote ne MeteorCMS]' },
-                      json: true };
+                        url: 'https://bulksms.vsms.net/eapi/submission/send_sms/2/2.0',
+                        headers:
+                         { 'content-type': 'application/x-www-form-urlencoded' },
+                        form:
+                         { username: 'ennio5',
+                           password: 'meteorcms',
+                           msisdn: numbers[user].number,
+                           message: 'MeteorCMS - ' + njoftim.author +' sapo postoi nje njofim' + njoftim.title.slice(0,25) + '... [lexo njoftimin e plote ne MeteorCMS]' } };
 
-                    request(options, function (error, response, body) {
-                        if (error) {
-                          console.log(error);
-                        }
+                      request(options, function (error, response, body) {
+                        if (error) throw new Error(error);
 
                         console.log(body);
-                      });
+                    });
+
+
+
+                    // var options = { method: 'POST',
+                    //   url: 'https://api.infobip.com/sms/1/text/single',
+                    //   headers:
+                    //    { accept: 'application/json',
+                    //      'content-type': 'application/json',
+                    //      authorization: 'Basic ZW5uaW81OmFuZHlncmFtbQ==',
+                    //      host: 'api.infobip.com' },
+                    //   body:
+                    //    { from: 'InfoSMS',
+                    //      to:   '355696471423',
+                    //      text: 'MeteorCMS - ' + njoftim.author +' sapo postoi nje njofim' + njoftim.title.slice(0,25) + '... [lexo njoftimin e plote ne MeteorCMS]' },
+                    //   json: true };
+                    //
+                    // request(options, function (error, response, body) {
+                    //     if (error) {
+                    //       console.log(error);
+                    //     }
+                    //
+                    //     console.log(body);
+                    //   });
 
                   } //end loop
                 }); //close db-connection
