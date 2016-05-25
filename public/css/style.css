@@ -367,8 +367,11 @@ header .register a:hover {
   transition: 0.5s;
 }
 .post .blog .blog-post {
-  height: 225px;
   margin-top: 30px;
+  height: auto;
+  overflow: auto;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #ebebf4;
 }
 .post .blog .blog-post .left-blog-post {
   float: left;
