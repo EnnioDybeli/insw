@@ -367,8 +367,9 @@ header .register a:hover {
   transition: 0.5s;
 }
 .post .blog .blog-post {
-  height: 225px;
+  height: auto;
   margin-top: 30px;
+  display: inline-block;
 }
 .post .blog .blog-post .left-blog-post {
   float: left;
