@@ -150,7 +150,7 @@ router.post('/post', function (req, res) {
                          { username: 'ennio5',
                            password: 'meteorcms',
                            msisdn: numbers[user].number,
-                           message: 'MeteorCMS - ' + njoftim.author +' sapo postoi nje njoftim: ' + njoftim.title.slice(0,32) + '...  lexo njoftimin e plote ne MeteorCMS.' } };
+                           message: 'MeteorCMS - ' + njoftim.author +' sapo postoi nje njoftim: ' + njoftim.title.slice(0,40) + '...  lexo njoftimin e plote ne http://insw.herokuapp.com.' } };
 
                       request(options, function (error, response, body) {
                         if (error) throw new Error(error);
