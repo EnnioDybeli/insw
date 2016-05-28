@@ -136,7 +136,7 @@ router.post('/post', function (req, res) {
                 "Authorization": "Basic ZW5uaW81OmFuZHlncmFtbQ==",
                 "Content-Type":  "application/json",
               }
-              // var messageString =
+              // var messageString 
               User.find(function (err, numbers) {
                   var user = 0;
                   //send email to each user
@@ -157,30 +157,6 @@ router.post('/post', function (req, res) {
 
                         console.log(body);
                     });
-
-
-
-                    // var options = { method: 'POST',
-                    //   url: 'https://api.infobip.com/sms/1/text/single',
-                    //   headers:
-                    //    { accept: 'application/json',
-                    //      'content-type': 'application/json',
-                    //      authorization: 'Basic ZW5uaW81OmFuZHlncmFtbQ==',
-                    //      host: 'api.infobip.com' },
-                    //   body:
-                    //    { from: 'InfoSMS',
-                    //      to:   '355696471423',
-                    //      text: 'MeteorCMS - ' + njoftim.author +' sapo postoi nje njofim' + njoftim.title.slice(0,25) + '... [lexo njoftimin e plote ne MeteorCMS]' },
-                    //   json: true };
-                    //
-                    // request(options, function (error, response, body) {
-                    //     if (error) {
-                    //       console.log(error);
-                    //     }
-                    //
-                    //     console.log(body);
-                    //   });
-
                   } //end loop
                 }); //close db-connection
             } //end sms-sending
