@@ -46,17 +46,17 @@ $('.menulist > li').click(function () {
 
 
 //stick to top on 100px scroll
-$(window).scroll(function () {
-   if ($(this).scrollTop() >= 100) {
-        $(".menu").css('position', 'fixed');
-        $(".menu").css('top', '0');
-        $(".menu").css('width', '970px');
-        $(".menu").css('background', 'white');
-        $(".menu").css('z-index', '999');
-    } else {
-        $(".menu").css('position', 'relative');
-    }
-});
+// $(window).scroll(function () {
+//    if ($(this).scrollTop() >= 100) {
+//         $(".menu").css('position', 'fixed');
+//         $(".menu").css('top', '0');
+//         $(".menu").css('width', '970px');
+//         $(".menu").css('background', 'white');
+//         $(".menu").css('z-index', '999');
+//     } else {
+//         $(".menu").css('position', 'relative');
+//     }
+// });
 
 
 $('#kryesore').on('click',function () {
