@@ -136,7 +136,7 @@ router.post('/post', function (req, res) {
                 "Authorization": "Basic ZW5uaW81OmFuZHlncmFtbQ==",
                 "Content-Type":  "application/json",
               }
-              // var messageString 
+              // var messageString
               User.find(function (err, numbers) {
                   var user = 0;
                   //send email to each user
@@ -201,7 +201,7 @@ router.get('/ajax-filter/:viti/:grupi', function (req, res) {
           Post.find({'viti': req.params.viti,
                      'grupi': req.params.grupi.toUpperCase() },
             function (err, posts) {
-                res.render('njoftim', {Posts: posts.reverse(), User: req.user});
+                res.render('njoftim', {Posts: posts, User: req.user});
             });
         }
     } else {
