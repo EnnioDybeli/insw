@@ -306,7 +306,7 @@ header .register a:hover {
 }
 .post {
   background-color: #f1f1f7;
-  height: auto;
+  height: 100vh;
   width: 100%;
 }
 .post header {
