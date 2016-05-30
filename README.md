@@ -27,14 +27,19 @@ Stylus(css-preprocessor)
 Passport.js(auth)
 gulp(development-task-manager)
 ```
+Install Dependencies
+```
+npm install
+```
+
 Run Production:
 ```
-Npm start
+npm start
 ```
 Run development:
 
 ```
-Gulp
+gulp
 ```
 
 **Running on port: 3000**
