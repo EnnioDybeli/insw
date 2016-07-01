@@ -4,8 +4,6 @@
 
 **InSw16** - http://goo.gl/KRggTm
 
-**Live Version:** http://insw.herokuapp.com
-
 **Github Repository:** https://github.com/EnnioDybeli/insw
 
 
