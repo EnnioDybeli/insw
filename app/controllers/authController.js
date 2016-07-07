@@ -82,14 +82,14 @@ passport.use('register', new LocalStrategy({
                     return done(null, false, {message: "This user already exists"});
                 }
                 if (req.body.password === req.body.repassword  && fshnEmail(email) !== false) {
-                    var student = new User();
-                    student.name = req.body.name;
-                    student.surname = req.body.surname;
-                    student.email = req.body.email;
-                    student.password = student.generateHash(req.body.password);
-                    student.number = req.body.number;
-                    student.year = req.body.year;
-                    student.group = req.body.group;
+                    var student               = new User();
+                    student.name              = req.body.name;
+                    student.surname           = req.body.surname;
+                    student.email             = req.body.email;
+                    student.password          = student.generateHash(req.body.password);
+                    student.number            = req.body.number;
+                    student.year              = req.body.year;
+                    student.group             = req.body.group;
                     student.verificationToken = randtoken.generate('16');
                     if (fshnEmail(email) === "profesor") {
                         student.admin = true;
